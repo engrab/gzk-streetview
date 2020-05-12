@@ -1,0 +1,288 @@
+<resources>
+    <string name="app_name" translatable="false">Global Street View - GPS Driving Route Locator 3D</string>
+
+    <string name="banner_home_footer" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_full_screen" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+
+
+    <string name="pdialog_title">Permission Denied</string>
+    <string name="pdialog_text">You are currently denied permissions to accessing location of mobile please enable the permission from setting to proceed the application.</string>
+    <string name="pdialog_setting_btn">Setting</string>
+    <string name="txt_my_location">My Location</string>
+    <string name="txt_near_by">Near By Places</string>
+    <string name="txt_compass">Compass</string>
+    <string name="txt_street_view">Street View</string>
+    <string name="txt_voice_navigation">Voice Navigation</string>
+    <string name="txt_accounting">Accounting</string>
+    <string name="txt_airport">Airport</string>
+    <string name="txt_amusement_park">Amusement Park</string>
+    <string name="txt_aquarium">Aquarium</string>
+    <string name="txt_art_gallery">Art Gallery</string>
+    <string name="txt_atm">Atm</string>
+    <string name="txt_bakery">Bakery</string>
+    <string name="txt_bank">Bank</string>
+    <string name="txt_bar">Bar</string>
+    <string name="txt_beauty_salon">Beauty Salon</string>
+    <string name="txt_bicycle_store">Bicycle Store</string>
+    <string name="txt_book_store">Book Store</string>
+    <string name="txt_bowling_alley">Bowling Alley</string>
+    <string name="txt_bus_stop">Bus Stop</string>
+    <string name="txt_cafe">Cafe</string>
+    <string name="txt_car_dealer">Car Dealer</string>
+    <string name="txt_car_rental">Car Rental</string>
+    <string name="txt_car_repair">Car Repair</string>
+    <string name="txt_car_wash">Car Wash</string>
+    <string name="txt_casino">Casino</string>
+    <string name="txt_cemetery">Cemetery</string>
+    <string name="txt_church">Church</string>
+    <string name="txt_city_hall">City Hall</string>
+    <string name="txt_clothing_store">Clothing Store</string>
+    <string name="txt_convenience_store">Convenience Store</string>
+    <string name="txt_court">Court</string>
+    <string name="txt_dentist">Dentist</string>
+    <string name="txt_department_store">Department Store</string>
+    <string name="txt_doctor">Doctor</string>
+    <string name="txt_electrician">Electrician</string>
+    <string name="txt_electronics_store">Electronics Store</string>
+    <string name="txt_embassy">Embassy</string>
+    <string name="txt_establishment">Establishment</string>
+    <string name="txt_finance">Finance</string>
+    <string name="txt_fire_station">Fire Station</string>
+    <string name="txt_florist">Florist</string>
+    <string name="txt_food">Food</string>
+    <string name="txt_funeral_home">Funeral Home</string>
+    <string name="txt_furniture_store">Furniture Store</string>
+    <string name="txt_gas_station">Gas Station</string>
+    <string name="txt_general_contractor">General Contractor</string>
+    <string name="txt_gym">Gym</string>
+    <string name="txt_hair_care">Hair Care</string>
+    <string name="txt_hardware_store">Hardware Store</string>
+    <string name="txt_health">Health</string>
+    <string name="txt_temple">Temple</string>
+    <string name="txt_home_goods_store">Home Goods Store</string>
+    <string name="txt_hospital">Hospital</string>
+    <string name="txt_insurance_agency">Insurance Agency</string>
+    <string name="txt_jewelry_store">Jewelry Store</string>
+    <string name="txt_laundry">Laundry</string>
+    <string name="txt_lawyer">Lawyer</string>
+    <string name="txt_library">Library</string>
+    <string name="txt_liquor_store">Liquor Store</string>
+    <string name="txt_local_government_office">Local Government Office</string>
+    <string name="txt_locksmith">Locksmith</string>
+    <string name="txt_lodging">Lodging</string>
+    <string name="txt_meal_delivery">Meal Delivery</string>
+    <string name="txt_meal_takeaway">Meal Takeaway</string>
+    <string name="txt_mosque">Mosque</string>
+    <string name="txt_movie_rental">Movie Rental</string>
+    <string name="txt_movie_theater">Movie Theater</string>
+    <string name="txt_moving_company">Moving Company</string>
+    <string name="txt_museum">Museum</string>
+    <string name="txt_night_club">Night Club</string>
+    <string name="txt_painter">Painter</string>
+    <string name="txt_park">Park</string>
+    <string name="txt_parking">Parking</string>
+    <string name="txt_pet_store">Pet Store</string>
+    <string name="txt_pharmacy">Pharmacy</string>
+    <string name="txt_physiotherapist">Physiotherapist</string>
+    <string name="txt_place_worship">Place of Worship</string>
+    <string name="txt_plumber">Plumber</string>
+    <string name="txt_police">Police</string>
+    <string name="txt_post_office">Post Office</string>
+    <string name="txt_real_estate_agency">Real Estate Agency</string>
+    <string name="txt_restaurant">Restaurant</string>
+    <string name="txt_roofing_contractor">Roofing Contractor</string>
+    <string name="txt_rv_park">RV Park</string>
+    <string name="txt_school">School</string>
+    <string name="txt_shoe_store">Shoe Store</string>
+    <string name="txt_shopping_mall">Shopping Mall</string>
+    <string name="txt_spa">Spa</string>
+    <string name="txt_stadium">Stadium</string>
+    <string name="txt_storage">Storage</string>
+    <string name="txt_store">Store</string>
+    <string name="txt_subway_station">Subway Station</string>
+    <string name="txt_super_market">Super Market</string>
+    <string name="txt_synagogue">Synagogue</string>
+    <string name="txt_taxi_stand">Taxi Stand</string>
+    <string name="txt_train_station">Train Station</string>
+    <string name="txt_transit_station">Transit Station</string>
+    <string name="txt_travel_agency">Travel Agency</string>
+    <string name="txt_university">University</string>
+    <string name="txt_veterinary_care">Veterinary Care</string>
+    <string name="txt_zoo">Zoo</string>
+
+
+    <string name="txt_ok">OK</string>
+    <string name="txt_origin">Origin</string>
+    <string name="txt_destination">Destination</string>
+    <string name="txt_distance_information">Distance Information</string>
+    <string name="txt_location_information">Location Information!</string>
+    <string name="txt_your_location">Your Location</string>
+    <string name="txt_tap_on_map">Tap on the map to calculate the distance!</string>
+    <string name="txt_route_information">Route Information!</string>
+    <string name="txt_select_destination">Select the destination first.</string>
+    <string name="txt_you_are">You are</string>
+    <string name="txt_away_from">away from destination</string>
+    <string name="txt_internet_access">Internet Access!</string>
+    <string name="txt_no_internet">No internet Connection!</string>
+
+    <string name="txt_route_finder">Route Finder</string>
+    <string name="txt_source_location">SOURCE LOCATION</string>
+    <string name="txt_no_source_selected">No Source Location Selected</string>
+    <string name="txt_destination_location">DESTINATION LOCATION</string>
+    <string name="txt_no_destination_selected">No Destination Location Selected</string>
+    <string name="txt_find_route">FIND ROUTE</string>
+    <string name="txt_distance">DISTANCE</string>
+    <string name="txt_world_wonders">World Wonders</string>
+    <string name="txt_rivers">Rivers &amp; Oceans</string>
+    <string name="txt_deserts">Deserts</string>
+    <string name="txt_jungle_safaris">Jungle Safaris</string>
+    <string name="txt_mountains">Mountains</string>
+    <string name="txt_near_py_places">Near By Places</string>
+
+    <string name="txt_select_source_n_destination">Please Select Source &amp; Destination first!</string>
+    <string name="txt_select_source_first">Please Select Source first!</string>
+    <string name="txt_select_destination_first">Please Select Destination first!</string>
+    <string name="txt_famous_places">Famous Places</string>
+    <string name="txt_want_exit">Do you want to Exit?</string>
+    <string name="txt_share_via">Share Via</string>
+    <string name="txt_application_language">Choose Application Language</string>
+    <string name="txt_language">Language</string>
+    <string name="txt_select_language">Select Language</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="txt_satellite_view">Satellite View</string>
+    <string name="txt_3d_map">3D Map</string>
+    <string name="txt_ports">Ports</string>
+    <string name="txt_air_ports">Air Ports</string>
+    <string name="txt_aqua">Aqua</string>
+    <string name="txt_railway_stations">Railway Stations</string>
+    <string name="txt_exploring_world">Exploring World</string>
+    <string name="txt_where_to">Where To?</string>
+    <string name="txt_where_you_want_go">Where you want to go! Speak Now!</string>
+    <string name="txt_warning">Warning!</string>
+    <string name="txt_voice_recognition_not_active">Voice Recognition Engine on Your Device is Not Active</string>
+    <string name="txt_beaches">Beaches</string>
+    <string name="txt_lakes">Lakes</string>
+    <string name="txt_sea_ports">Sea Ports</string>
+    <string name="txt_dry_ports">Dry Ports</string>
+
+    <!--name,icon,language code-->
+    <string-array name="CountryCodes" translatable="false">
+        <item>Afrikaans,ZA,af</item>
+        <item>Albanian,AL,sq</item>
+        <item>Amharic,ET,am</item>
+        <item>Arabic,AE,ar</item>
+        <item>Armenian,AM,hy</item>
+        <item>Azeerbaijani,AZ,az</item>
+        <item>Basque,ES,eu</item>
+        <item>Belarusian,BY,be</item>
+        <item>Bengali,BD,bn</item>
+        <item>Bosnian,BA,bs</item>
+        <item>Bulgarian,BG,bg</item>
+        <item>Catalan,ES,ca</item>
+        <item>Chinese,CN,zh</item>
+        <item>Corsican,FR,co</item>
+        <item>Croatian,HR,hr</item>
+        <item>Czech,CZ,cs</item>
+        <item>Danish,DK,da</item>
+        <item>Dutch,NL,nl</item>
+        <item>English,US,en</item>
+        <item>Estonian,EE,et</item>
+        <item>Finnish,FI,fi</item>
+        <item>French,FR,fr</item>
+        <item>Frisian,NL,fy</item>
+        <item>Galician,ES,gl</item>
+        <item>Georgian,GE,ka</item>
+        <item>German,DE,de</item>
+        <item>Greek,GR,el</item>
+        <item>Gujarati,IN,gu</item>
+        <item>Haitian Creole,HT,ht</item>
+        <item>Hausa,NG,ha</item>
+        <item>Hebrew,IL,iw</item>
+        <item>Hindi,IN,hi</item>
+        <item>Hungarian,HU,hu</item>
+        <item>Icelandic,IS,is</item>
+        <item>Igbo,NG,ig</item>
+        <item>Indonesian,ID,id</item>
+        <item>Irish,IE,ga</item>
+        <item>Italian,IT,it</item>
+        <item>Japanese,JP,ja</item>
+        <item>Kannada,IN,kn</item>
+        <item>Kazakh,KZ,kk</item>
+        <item>Khmer,KH,km</item>
+        <item>Korean,KR,ko</item>
+        <item>Kyrgyz,KG,ky</item>
+        <item>Lao,LA,lo</item>
+        <item>Latvian,LV,lv</item>
+        <item>Lithuanian,LT,lt</item>
+        <item>Luxembourgish,LU,lb</item>
+        <item>Macedonian,MK,mk</item>
+        <item>Malagasy,MG,mg</item>
+        <item>Malay,MY,ms</item>
+        <item>Malayalam,ML,ml</item>
+        <item>Maltese,MT,mt</item>
+        <item>Maori,NZ,mi</item>
+        <item>Marathi,IN,mr</item>
+        <item>Mongolian,MN,mn</item>
+        <item>Myanmar,MM,my</item>
+        <item>Nepali,NP,ne</item>
+        <item>Norwegian,NO,no</item>
+        <item>Nyanja,MW,ny</item>
+        <item>Pashto,AF,ps</item>
+        <item>Persian,IR,fa</item>
+        <item>Polish,PL,pl</item>
+        <item>Portuguese,PT,pt</item>
+        <item>Punjabi,PK,pa</item>
+        <item>Romanian,RO,ro</item>
+        <item>Russian,RU,ru</item>
+        <item>Samoan,WS,sm</item>
+        <item>Scots Gaelic,CA,gd</item>
+        <item>Serbian,RS,sr</item>
+        <item>Sesotho,LS,st</item>
+        <item>Shona,ZW,sn</item>
+        <item>Sindhi,PK,sd</item>
+        <item>Sinhala,LK,si</item>
+        <item>Slovak,SK,sk</item>
+        <item>Slovenian,SI,sl</item>
+        <item>Somali,SO,so</item>
+        <item>Spanish,ES,es</item>
+        <item>Sundanese,SG,su</item>
+        <item>Swahili,TZ,sw</item>
+        <item>Swedish,SE,sv</item>
+        <item>Tagalog,PH,tl</item>
+        <item>Tajik,TJ,tg</item>
+        <item>Tamil,IN,ta</item>
+        <item>Telugu,IN,te</item>
+        <item>Thai,TH,th</item>
+        <item>Turkish,TR,tr</item>
+        <item>Ukrainian,UA,uk</item>
+        <item>Urdu,PK,ur</item>
+        <item>Uzbek,UZ,uz</item>
+        <item>Vietnamese,VN,vi</item>
+        <item>Welsh,CN,cy</item>
+        <item>Xhosa,ZA,xh</item>
+        <item>Yiddish,LR,yi</item>
+        <item>Yoruba,NR,yo</item>
+        <item>Zulu,ZA,zu</item>
+    </string-array>
+    <string name="australia_highlights">Australia Highlights</string>
+    <string name="exploring_africa">Exploring Africa</string>
+    <string name="share_app">Share App</string>
+    <string name="live_street_view">Live Street View</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="Postal_code">Postal Code</string>
+    <string name="Country_">Country</string>
+    <string name="Knowaddress">Known Address</string>
+
+    <string name="universities_street_view">Universities Street View</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="more_apps">More App</string>
+    <string name="title_activity_maps">Map</string>
+
+
+</resources>

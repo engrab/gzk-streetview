@@ -1,0 +1,327 @@
+<resources>
+
+    <string name="pdialog_title">অনুমতি অস্বীকার</string>
+        
+    <string name="pdialog_text">আপনি বর্তমানে মোবাইলের অবস্থান অ্যাক্সেস করার অনুমতি অস্বীকার করেছেন অ্যাপ্লিকেশনটি এগিয়ে যাওয়ার জন্য সেটিংস থেকে অনুমতিটি সক্ষম করুন।</string>
+        
+    <string name="pdialog_setting_btn">বিন্যাস</string>
+        
+    <string name="txt_my_location">আমার অবস্থান</string>
+        
+    <string name="txt_near_by">ঠিকানা</string>
+        
+    <string name="txt_compass">কম্পাস</string>
+        
+    <string name="txt_street_view">রাস্তার দৃশ্য</string>
+        
+    <string name="txt_voice_navigation">ভয়েস ন্যাভিগেশন</string>
+        
+    <string name="txt_accounting">হিসাবরক্ষণ</string>
+        
+    <string name="txt_airport">বিমানবন্দর</string>
+        
+    <string name="txt_amusement_park">চিত্তবিনোদন পার্ক</string>
+        
+    <string name="txt_aquarium">অ্যাকোয়ারিয়াম</string>
+        
+    <string name="txt_art_gallery">চিত্রশালা</string>
+        
+    <string name="txt_atm">এটিএম</string>
+        
+    <string name="txt_bakery">বেকারি</string>
+        
+    <string name="txt_bank">ব্যাংক</string>
+        
+    <string name="txt_bar">বার</string>
+        
+    <string name="txt_beauty_salon">বিউটি পার্লার</string>
+        
+    <string name="txt_bicycle_store">সাইকেল দোকান</string>
+        
+    <string name="txt_book_store">বইয়ের দোকান</string>
+        
+    <string name="txt_bowling_alley">বোলিং এলি</string>
+        
+    <string name="txt_bus_stop">বাস স্টপ</string>
+        
+    <string name="txt_cafe">ক্যাফে</string>
+        
+    <string name="txt_car_dealer">গাড়ি বিক্রেতা</string>
+        
+    <string name="txt_car_rental">গাড়ী ভাড়া</string>
+        
+    <string name="txt_car_repair">গাড়ী মেরামত</string>
+        
+    <string name="txt_car_wash">গাড়ী ধোয়া</string>
+        
+    <string name="txt_casino">নাচঘর</string>
+        
+    <string name="txt_cemetery">কবরস্থান</string>
+        
+    <string name="txt_church">গির্জা</string>
+        
+    <string name="txt_city_hall">সিটি হল</string>
+        
+    <string name="txt_clothing_store">পোশাকের দোকান</string>
+        
+    <string name="txt_convenience_store">সুবিধার দোকান</string>
+        
+    <string name="txt_court">আদালত</string>
+        
+    <string name="txt_dentist">দাঁতের</string>
+        
+    <string name="txt_department_store">ডিপার্টমেন্ট স্টোর</string>
+        
+    <string name="txt_doctor">ডাক্তার</string>
+        
+    <string name="txt_electrician">তাড়িতী</string>
+        
+    <string name="txt_electronics_store">ইলেকট্রনিক্স দোকান</string>
+        
+    <string name="txt_embassy">দূতাবাস</string>
+        
+    <string name="txt_establishment">সংস্থা</string>
+        
+    <string name="txt_finance">মূলধন যোগান</string>
+        
+    <string name="txt_fire_station">অগ্নি নির্বাপন কেন্দ্র</string>
+        
+    <string name="txt_florist">মালী</string>
+        
+    <string name="txt_food">খাদ্য</string>
+        
+    <string name="txt_funeral_home">ফিউনারেল হোম</string>
+        
+    <string name="txt_furniture_store">আসবাবপত্রের দোকান</string>
+        
+    <string name="txt_gas_station">গ্যাস স্টেশন</string>
+        
+    <string name="txt_general_contractor">সাধারণ ঠিকাদার</string>
+        
+    <string name="txt_gym">জিম</string>
+        
+    <string name="txt_hair_care">চুলের যত্ন</string>
+        
+    <string name="txt_hardware_store">যন্ত্রাংশের দোকান</string>
+        
+    <string name="txt_health">স্বাস্থ্য</string>
+        
+    <string name="txt_temple">মন্দির</string>
+        
+    <string name="txt_home_goods_store">হোম সামগ্রী স্টোর</string>
+        
+    <string name="txt_hospital">হাসপাতাল</string>
+        
+    <string name="txt_insurance_agency">বীমা প্রতিষ্ঠান</string>
+        
+    <string name="txt_jewelry_store">জুয়েলারীর দোকান</string>
+        
+    <string name="txt_laundry">লন্ড্রি</string>
+        
+    <string name="txt_lawyer">আইনজীবী</string>
+        
+    <string name="txt_library">গ্রন্থাগার</string>
+        
+    <string name="txt_liquor_store">মদের দোকান</string>
+        
+    <string name="txt_local_government_office">স্থানীয় সরকার অফিস</string>
+        
+    <string name="txt_locksmith">তালাত্তয়ালা</string>
+        
+    <string name="txt_lodging">বাসাবাড়ি</string>
+        
+    <string name="txt_meal_delivery">খাবার বিতরণ</string>
+        
+    <string name="txt_meal_takeaway">খাবারের দোকান</string>
+        
+    <string name="txt_mosque">মসজিদ</string>
+        
+    <string name="txt_movie_rental">মুভি ভাড়া</string>
+        
+    <string name="txt_movie_theater">সিনেমা হল</string>
+        
+    <string name="txt_moving_company">মুভিং কোম্পানি</string>
+        
+    <string name="txt_museum">জাদুঘর</string>
+        
+    <string name="txt_night_club">নৈশক্লাব</string>
+        
+    <string name="txt_painter">চিত্রশিল্পী</string>
+        
+    <string name="txt_park">পার্ক</string>
+        
+    <string name="txt_parking">পার্কিং</string>
+        
+    <string name="txt_pet_store">পোষা প্রাণীর দোকান</string>
+        
+    <string name="txt_pharmacy">ঔষধালয়</string>
+        
+    <string name="txt_physiotherapist">ফিজিওথেরাপিস্ট</string>
+        
+    <string name="txt_place_worship">উপাসনা স্থান</string>
+        
+    <string name="txt_plumber">প্লাম্বার</string>
+        
+    <string name="txt_police">পুলিশ</string>
+        
+    <string name="txt_post_office">ডাক ঘর</string>
+        
+    <string name="txt_real_estate_agency">স্থাবর সংস্থা</string>
+        
+    <string name="txt_restaurant">রেস্টুরেন্ট</string>
+        
+    <string name="txt_roofing_contractor">ছাদ ঠিকাদার</string>
+        
+    <string name="txt_rv_park">আরভি পার্ক</string>
+        
+    <string name="txt_school">স্কুল</string>
+        
+    <string name="txt_shoe_store">জুতার দোকান</string>
+        
+    <string name="txt_shopping_mall">শপিং মল</string>
+        
+    <string name="txt_spa">স্পা</string>
+        
+    <string name="txt_stadium">স্টেডিয়ামে</string>
+        
+    <string name="txt_storage">সংগ্রহস্থল</string>
+        
+    <string name="txt_store">দোকান</string>
+        
+    <string name="txt_subway_station">পাতাল রেল স্টেশন</string>
+        
+    <string name="txt_super_market">সুপার মার্কেট</string>
+        
+    <string name="txt_synagogue">সিনাগগ</string>
+        
+    <string name="txt_taxi_stand">ট্যাক্সি স্ট্যান্ড</string>
+        
+    <string name="txt_train_station">রেল ষ্টেশন</string>
+        
+    <string name="txt_transit_station">ট্রানজিট স্টেশন</string>
+        
+    <string name="txt_travel_agency">ট্রাভেল এজেন্সি</string>
+        
+    <string name="txt_university">বিশ্ববিদ্যালয়</string>
+        
+    <string name="txt_veterinary_care">ভেটেরিনারী কেয়ার</string>
+        
+    <string name="txt_zoo">চিড়িয়াখানা</string>
+        
+    <string name="txt_ok">ঠিক আছে</string>
+        
+    <string name="txt_origin">উত্স</string>
+        
+    <string name="txt_destination">গন্তব্য</string>
+        
+    <string name="txt_distance_information">দূরত্ব তথ্য</string>
+        
+    <string name="txt_location_information">অবস্থানগত তথ্য!</string>
+        
+    <string name="txt_your_location">তোমার অবস্থান</string>
+        
+    <string name="txt_tap_on_map">দূরত্ব গণনা করার জন্য মানচিত্রে আলতো চাপুন!</string>
+        
+    <string name="txt_route_information">রুট তথ্য!</string>
+        
+    <string name="txt_select_destination">প্রথম গন্তব্য নির্বাচন করুন</string>
+        
+    <string name="txt_you_are">তুমি</string>
+        
+    <string name="txt_away_from">গন্তব্য থেকে দূরে</string>
+        
+    <string name="txt_internet_access">ইন্টারনেট সুবিধা!</string>
+        
+    <string name="txt_no_internet">কোন ইন্টারনেট সংযোগ!</string>
+        
+    <string name="txt_route_finder">রুট খোঁজার</string>
+        
+    <string name="txt_source_location">উৎস স্থান</string>
+        
+    <string name="txt_no_source_selected">কোন উত্স অবস্থান নির্বাচিত</string>
+        
+    <string name="txt_destination_location">DESTINATION LOCATION</string>
+        
+    <string name="txt_no_destination_selected">কোনও গন্তব্য অবস্থান নির্বাচিত নেই</string>
+        
+    <string name="txt_find_route">রাউন্ড দেখুন</string>
+        
+    <string name="txt_distance">দূরত্ব</string>
+        
+    <string name="txt_world_wonders">বিশ্ব আশ্চর্য</string>
+        
+    <string name="txt_rivers">নদী</string>
+        
+    <string name="txt_deserts">মরুভূমি</string>
+        
+    <string name="txt_jungle_safaris">জঙ্গল সাফারি</string>
+        
+    <string name="txt_mountains">পর্বতমালা</string>
+        
+    <string name="txt_near_py_places">ঠিকানা</string>
+        
+    <string name="txt_select_source_n_destination">দয়া করে উত্স নির্বাচন করুন &amp; প্রথম স্থান!</string>
+        
+    <string name="txt_select_source_first">দয়া করে প্রথম উত্স নির্বাচন করুন!</string>
+        
+    <string name="txt_select_destination_first">প্রথম গন্তব্য নির্বাচন করুন!</string>
+        
+    <string name="txt_famous_places">বিখ্যাত জায়গা</string>
+        
+    <string name="txt_want_exit">আপনি কি প্রস্থান করতে চান?</string>
+        
+    <string name="txt_share_via">মাধ্যমে ভাগ করুন</string>
+        
+    <string name="txt_application_language">অ্যাপ্লিকেশন ভাষা চয়ন করুন</string>
+        
+    <string name="txt_language">ভাষা</string>
+        
+    <string name="txt_select_language">ভাষা নির্বাচন কর</string>
+        
+    <string name="action_settings">সেটিংস</string>
+        
+    <string name="txt_satellite_view">স্যাটেলাইট দেখুন</string>
+        
+    <string name="txt_3d_map">3D মানচিত্র</string>
+        
+    <string name="txt_ports">বন্দর</string>
+        
+    <string name="txt_air_ports">এয়ার পোর্টস</string>
+        
+    <string name="txt_aqua">জল</string>
+        
+    <string name="txt_railway_stations">রেলওয়ে স্টেশন</string>
+        
+    <string name="txt_exploring_world">এক্সপ্লোর ওয়ার্ল্ড</string>
+        
+    <string name="txt_where_to">কোথায়?</string>
+        
+    <string name="txt_where_you_want_go">তুমি কোথাই জেতে চাও! এখন বলো!</string>
+        
+    <string name="txt_warning">সতর্কবাণী!</string>
+        
+    <string name="txt_voice_recognition_not_active">আপনার ডিভাইসে ভয়েস স্বীকৃতি ইঞ্জিন সক্রিয় নয়</string>
+        
+    <string name="txt_beaches">সৈকত</string>
+        
+    <string name="txt_lakes">হ্রদ</string>
+        
+    <string name="txt_sea_ports">সাগর পোর্টস</string>
+        
+    <string name="txt_dry_ports">শুকনো পোর্টস</string>
+    <string name="australia_highlights">অস্ট্রেলিয়া হাইলাইটস</string>
+    <string name="exploring_africa">আফ্রিকা অনুসন্ধান</string>
+    <string name="share_app">অ্যাপ্লিকেশন ভাগ করা</string>
+    <string name="live_street_view">লাইভ স্ট্রিট ভিউ</string>
+    <string name="latitude">অক্ষাংশ</string>
+    <string name="longitude">দ্রাঘিমা</string>
+    <string name="address">ঠিকানা</string>
+    <string name="city">শহর</string>
+    <string name="state">রাষ্ট্র</string>
+    <string name="Postal_code">পোস্ট অফিসের নাম্বার</string>
+    <string name="Country_">দেশ</string>
+    <string name="Knowaddress">পরিচিত ঠিকানা</string>
+    <string name="universities_street_view">শ্ববিদ্যালয় রাস্তার দৃশ্য</string>
+    <string name="rate_us">আমাদের ব্যাপারে আপনার মতামত দিন</string>
+    <string name="more_apps">আরো অ্যাপ্লিকেশান</string>
+</resources>

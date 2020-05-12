@@ -1,0 +1,327 @@
+<resources>
+
+    <string name="pdialog_title">Ti kọ iyọọda</string>
+        
+    <string name="pdialog_text">O ti gba awọn igbanilaaye lọwọlọwọ lati wọle si ipo ti alagbeka jọwọ jọwọ igbanilaaye lati eto lati tẹsiwaju ohun elo naa.</string>
+        
+    <string name="pdialog_setting_btn">Eto</string>
+        
+    <string name="txt_my_location">Ipo mi</string>
+        
+    <string name="txt_near_by">Nitosi Nipa Awọn Ibiti</string>
+        
+    <string name="txt_compass">Kompasi</string>
+        
+    <string name="txt_street_view">Wiwo Street</string>
+        
+    <string name="txt_voice_navigation">Lilọ kiri ohùn</string>
+        
+    <string name="txt_accounting">Iṣiro</string>
+        
+    <string name="txt_airport">Papa ọkọ ofurufu</string>
+        
+    <string name="txt_amusement_park">Ori papa isere fun isimi</string>
+        
+    <string name="txt_aquarium">Aquarium</string>
+        
+    <string name="txt_art_gallery">Igi aworan</string>
+        
+    <string name="txt_atm">Atm</string>
+        
+    <string name="txt_bakery">Bakery</string>
+        
+    <string name="txt_bank">Bank</string>
+        
+    <string name="txt_bar">Pẹpẹ</string>
+        
+    <string name="txt_beauty_salon">Ayẹwo Ọṣọ</string>
+        
+    <string name="txt_bicycle_store">Ile-itaja keke</string>
+        
+    <string name="txt_book_store">Iwe itaja itaja</string>
+        
+    <string name="txt_bowling_alley">Bowling Alley</string>
+        
+    <string name="txt_bus_stop">Ibudo oko</string>
+        
+    <string name="txt_cafe">Kafe</string>
+        
+    <string name="txt_car_dealer">Oluṣowo ọkọ ayọkẹlẹ</string>
+        
+    <string name="txt_car_rental">Irin-ọkọ ayọkẹlẹ</string>
+        
+    <string name="txt_car_repair">Irinṣe atunṣe ọkọ</string>
+        
+    <string name="txt_car_wash">Ọkọ wẹwẹ</string>
+        
+    <string name="txt_casino">Casino</string>
+        
+    <string name="txt_cemetery">Ibi oku</string>
+        
+    <string name="txt_church">Ijo</string>
+        
+    <string name="txt_city_hall">Gbongan ilu</string>
+        
+    <string name="txt_clothing_store">Ile itaja itaja</string>
+        
+    <string name="txt_convenience_store">Wewewe itaja</string>
+        
+    <string name="txt_court">Ẹjọ</string>
+        
+    <string name="txt_dentist">Alamọ</string>
+        
+    <string name="txt_department_store">Ile-iṣẹ Ikọju</string>
+        
+    <string name="txt_doctor">Dokita</string>
+        
+    <string name="txt_electrician">Ina</string>
+        
+    <string name="txt_electronics_store">Ile itaja Electronics</string>
+        
+    <string name="txt_embassy">Ile-iṣẹ ajeji</string>
+        
+    <string name="txt_establishment">Idasile</string>
+        
+    <string name="txt_finance">Isuna</string>
+        
+    <string name="txt_fire_station">Ibudo panọ panọ</string>
+        
+    <string name="txt_florist">Aladodo</string>
+        
+    <string name="txt_food">Ounje</string>
+        
+    <string name="txt_funeral_home">Ibugbe Funeral</string>
+        
+    <string name="txt_furniture_store">Ile itaja itaja</string>
+        
+    <string name="txt_gas_station">Ilé epo</string>
+        
+    <string name="txt_general_contractor">Gbogbogbo alakoso</string>
+        
+    <string name="txt_gym">Gym</string>
+        
+    <string name="txt_hair_care">Idoju Irun</string>
+        
+    <string name="txt_hardware_store">Ile itaja Ibuju</string>
+        
+    <string name="txt_health">Ilera</string>
+        
+    <string name="txt_temple">Tẹmpili</string>
+        
+    <string name="txt_home_goods_store">Ile itaja ọja Ile</string>
+        
+    <string name="txt_hospital">Iwosan</string>
+        
+    <string name="txt_insurance_agency">Ile-iṣẹ Iṣura</string>
+        
+    <string name="txt_jewelry_store">Ile itaja Golu</string>
+        
+    <string name="txt_laundry">Aṣọṣọ</string>
+        
+    <string name="txt_lawyer">Agbẹjọro</string>
+        
+    <string name="txt_library">Iwadi</string>
+        
+    <string name="txt_liquor_store">Ile Oko Ọti</string>
+        
+    <string name="txt_local_government_office">Ile-iṣẹ Ijọba agbegbe</string>
+        
+    <string name="txt_locksmith">Aṣọnṣọ</string>
+        
+    <string name="txt_lodging">Ibugbe</string>
+        
+    <string name="txt_meal_delivery">Ifijiṣẹ eniyan</string>
+        
+    <string name="txt_meal_takeaway">Ounjẹ Yaro</string>
+        
+    <string name="txt_mosque">Mossalassi</string>
+        
+    <string name="txt_movie_rental">Iyaworan fiimu</string>
+        
+    <string name="txt_movie_theater">Iwoye fiimu</string>
+        
+    <string name="txt_moving_company">Ile gbigbe</string>
+        
+    <string name="txt_museum">Ile ọnọ</string>
+        
+    <string name="txt_night_club">Night Club</string>
+        
+    <string name="txt_painter">Alakikanju</string>
+        
+    <string name="txt_park">Park</string>
+        
+    <string name="txt_parking">Ti o pa</string>
+        
+    <string name="txt_pet_store">Ile itaja Pet</string>
+        
+    <string name="txt_pharmacy">Ile-iwosan</string>
+        
+    <string name="txt_physiotherapist">Onimẹsẹ-ara</string>
+        
+    <string name="txt_place_worship">Ibi ti Ìjọsìn</string>
+        
+    <string name="txt_plumber">Plumber</string>
+        
+    <string name="txt_police">Awọn ọlọpa</string>
+        
+    <string name="txt_post_office">Ile ifi iwe ranse</string>
+        
+    <string name="txt_real_estate_agency">Ile-ini Ohun-ini</string>
+        
+    <string name="txt_restaurant">Ọja</string>
+        
+    <string name="txt_roofing_contractor">Roofing Alakoso</string>
+        
+    <string name="txt_rv_park">RV Park</string>
+        
+    <string name="txt_school">Ile-iwe</string>
+        
+    <string name="txt_shoe_store">Ile-itaja Aṣọ</string>
+        
+    <string name="txt_shopping_mall">Ile itaja</string>
+        
+    <string name="txt_spa">Sipaa</string>
+        
+    <string name="txt_stadium">Aaye papa</string>
+        
+    <string name="txt_storage">Ibi ipamọ</string>
+        
+    <string name="txt_store">Tọju</string>
+        
+    <string name="txt_subway_station">Ibusọ Ọkọ ayọkẹlẹ</string>
+        
+    <string name="txt_super_market">Ile ọja nla</string>
+        
+    <string name="txt_synagogue">Ile-isinmi</string>
+        
+    <string name="txt_taxi_stand">Ibi-ori Taxi</string>
+        
+    <string name="txt_train_station">Ibusọ Ọkọ</string>
+        
+    <string name="txt_transit_station">Ibusọ irin-ajo</string>
+        
+    <string name="txt_travel_agency">Ajo Irin ajo</string>
+        
+    <string name="txt_university">University</string>
+        
+    <string name="txt_veterinary_care">Iwosan ti Ilera</string>
+        
+    <string name="txt_zoo">Ile ifihan oniruuru ẹranko</string>
+        
+    <string name="txt_ok">O DARA</string>
+        
+    <string name="txt_origin">Oti</string>
+        
+    <string name="txt_destination">Opin</string>
+        
+    <string name="txt_distance_information">Alaye Ijinna</string>
+        
+    <string name="txt_location_information">Alaye agbegbe!</string>
+        
+    <string name="txt_your_location">Ipo rẹ</string>
+        
+    <string name="txt_tap_on_map">Tẹ lori map lati ṣe iṣiro aaye!</string>
+        
+    <string name="txt_route_information">Alaye itọsọna!</string>
+        
+    <string name="txt_select_destination">Yan ibẹrẹ ni akọkọ.</string>
+        
+    <string name="txt_you_are">O wa</string>
+        
+    <string name="txt_away_from">kuro lati ibi-ajo</string>
+        
+    <string name="txt_internet_access">Wiwọle Ayelujara!</string>
+        
+    <string name="txt_no_internet">Ko si isopọ Ayelujara!</string>
+        
+    <string name="txt_route_finder">Oluwari Itọsọna</string>
+        
+    <string name="txt_source_location">OWO OJU</string>
+        
+    <string name="txt_no_source_selected">Ko si Orisun Ipinnu Ti yan</string>
+        
+    <string name="txt_destination_location">Ibi ipamọ DESTINATION</string>
+        
+    <string name="txt_no_destination_selected">Ko si ipo agbegbe ti yan</string>
+        
+    <string name="txt_find_route">ṢE ROUTE</string>
+        
+    <string name="txt_distance">DISTANCE</string>
+        
+    <string name="txt_world_wonders">Iyanu aye</string>
+        
+    <string name="txt_rivers">Rivers</string>
+        
+    <string name="txt_deserts">Awọn aginjù</string>
+        
+    <string name="txt_jungle_safaris">Jungle Safaris</string>
+        
+    <string name="txt_mountains">Awọn òke</string>
+        
+    <string name="txt_near_py_places">Nitosi Nipa Awọn Ibiti</string>
+        
+    <string name="txt_select_source_n_destination">Jọwọ Yan Orisun &amp; Opin akọkọ!</string>
+        
+    <string name="txt_select_source_first">Jọwọ Yan Orisun akọkọ!</string>
+        
+    <string name="txt_select_destination_first">Jọwọ Yan Akọṣẹ aṣaju!</string>
+        
+    <string name="txt_famous_places">Awọn ipo pataki</string>
+        
+    <string name="txt_want_exit">Ṣe o fẹ lati jade?</string>
+        
+    <string name="txt_share_via">Pin Nipasẹ</string>
+        
+    <string name="txt_application_language">Yan Ẹrọ Ohun elo</string>
+        
+    <string name="txt_language">Ede</string>
+        
+    <string name="txt_select_language">Yan Ede</string>
+        
+    <string name="action_settings">Ètò</string>
+        
+    <string name="txt_satellite_view">Wiwo Satẹlaiti</string>
+        
+    <string name="txt_3d_map">Map 3D</string>
+        
+    <string name="txt_ports">Awọn ibudo</string>
+        
+    <string name="txt_air_ports">Awọn ọkọ oju omi</string>
+        
+    <string name="txt_aqua">Omi</string>
+        
+    <string name="txt_railway_stations">Awọn ibudo irin-ajo</string>
+        
+    <string name="txt_exploring_world">Ṣawari Aye</string>
+        
+    <string name="txt_where_to">Nibo?</string>
+        
+    <string name="txt_where_you_want_go">Ibi ti o fẹ lọ! Sọ Bayi!</string>
+        
+    <string name="txt_warning">Ikilo!</string>
+        
+    <string name="txt_voice_recognition_not_active">Agbara idanimọ ohùn lori ẹrọ rẹ kii ṣe Iroyin</string>
+        
+    <string name="txt_beaches">Awọn etikun</string>
+        
+    <string name="txt_lakes">Awọn adagun</string>
+        
+    <string name="txt_sea_ports">Okun Okun</string>
+        
+    <string name="txt_dry_ports">Awọn Ibudo Gbẹ</string>
+    <string name="australia_highlights">Australia Awọn ifojusi</string>
+    <string name="exploring_africa">Ṣawari Afirika</string>
+    <string name="share_app">Pin App</string>
+    <string name="live_street_view">Live Street Street</string>
+    <string name="latitude">Iwọn</string>
+    <string name="longitude">Gunitude</string>
+    <string name="address">Adirẹsi</string>
+    <string name="city">Ilu</string>
+    <string name="state">Ipinle</string>
+    <string name="Postal_code">Ifiranṣẹ ifiweranṣẹ</string>
+    <string name="Country_">Orilẹ-ede</string>
+    <string name="Knowaddress">Adirẹsi ti a mo</string>
+    <string name="universities_street_view">Egbe Oju-ile Agbegbe</string>
+    <string name="rate_us">  oṣuwọn Wa</string>
+    <string name="more_apps"> Awọn Nṣiṣẹ diẹ</string>
+</resources>
