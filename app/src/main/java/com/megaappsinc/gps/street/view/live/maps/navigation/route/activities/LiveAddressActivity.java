@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route.classes;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.Manifest;
 import android.content.Context;
@@ -7,9 +7,11 @@ import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,27 +30,37 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.Main_Menu_Activity;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
 
 import java.util.List;
 import java.util.Locale;
 
 
-public class LiveAddress extends AppCompatActivity implements OnMapReadyCallback {
+public class LiveAddressActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     GoogleMap mGoogleMap;
-    InterstitialAd mInterstitialAd;
+    AdView mAdView;
     TextView knowAddressText, cityText, addressText, longitudeText, latitudeText, postalCodeText, stateText, countyText;
     Button Normal, Satellite, Hybrid;
-   ImageView Zoom_in,Zoom_out;
+    ImageView Zoom_in, Zoom_out;
 
     @Override
     protected void onPause() {
-        super.onPause();
-        if (mInterstitialAd != null) {
-            mInterstitialAd.setAdListener(null);
+        if (mAdView !=null){
+            mAdView.pause();
         }
+        super.onPause();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        if (mAdView != null){
+            mAdView.destroy();
+        }
+        super.onDestroy();
     }
 
     @Override
@@ -57,23 +70,23 @@ public class LiveAddress extends AppCompatActivity implements OnMapReadyCallback
         knowAddressText = findViewById(R.id.knowAddressText);
         knowAddressText.setTypeface(null, Typeface.ITALIC);
         cityText = findViewById(R.id.cityText);
-        cityText.setTypeface(null,Typeface.ITALIC);
+        cityText.setTypeface(null, Typeface.ITALIC);
         addressText = findViewById(R.id.addressText);
-        addressText.setTypeface(null,Typeface.ITALIC);
+        addressText.setTypeface(null, Typeface.ITALIC);
         longitudeText = findViewById(R.id.longitudeText);
-        longitudeText.setTypeface(null,Typeface.ITALIC);
+        longitudeText.setTypeface(null, Typeface.ITALIC);
         latitudeText = findViewById(R.id.latitudeText);
-        latitudeText.setTypeface(null,Typeface.ITALIC);
+        latitudeText.setTypeface(null, Typeface.ITALIC);
         postalCodeText = findViewById(R.id.postalCodeText);
-        postalCodeText.setTypeface(null,Typeface.ITALIC);
+        postalCodeText.setTypeface(null, Typeface.ITALIC);
         stateText = findViewById(R.id.stateText);
-        stateText.setTypeface(null,Typeface.ITALIC);
+        stateText.setTypeface(null, Typeface.ITALIC);
         countyText = findViewById(R.id.countyText);
-        countyText.setTypeface(null,Typeface.ITALIC);
+        countyText.setTypeface(null, Typeface.ITALIC);
         Normal = findViewById(R.id.btn_normal);
         Satellite = findViewById(R.id.btn_satellite);
         Hybrid = findViewById(R.id.hybrid);
-       Zoom_in= findViewById(R.id.img_zoom_in);
+        Zoom_in = findViewById(R.id.img_zoom_in);
         Zoom_out = findViewById(R.id.img_zoom_out);
         Normal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,45 +113,49 @@ public class LiveAddress extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-Zoom_in.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomIn());
-    }
+        Zoom_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGoogleMap.animateCamera(CameraUpdateFactory.zoomIn());
+            }
 
-});
-Zoom_out.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomOut());
-    }
-});
+        });
+        Zoom_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGoogleMap.animateCamera(CameraUpdateFactory.zoomOut());
+            }
+        });
         SupportMapFragment fm = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         fm.getMapAsync(this);
 
+        AppPurchasePref appPurchasePref = new AppPurchasePref(LiveAddressActivity.this);
+        if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
+
+            mAdView = findViewById(R.id.adView);
+            mAdView.setAdUnitId(getString(R.string.banner_home_footer));
+            mAdView.loadAd(new AdRequest.Builder().build());
+            mAdView.setAdListener(new AdListener(){
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    mAdView.setVisibility(View.VISIBLE);
                 }
-            }
-        });
+            });
+        }
     }
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
-        if (Main_Menu_Activity.longitude != 0 && Main_Menu_Activity.latitude != 0) {
+        if (MainMenuActivity.longitude != 0 && MainMenuActivity.latitude != 0) {
 
-            LatLng latLng = new LatLng(Main_Menu_Activity.latitude, Main_Menu_Activity.longitude);
+            LatLng latLng = new LatLng(MainMenuActivity.latitude, MainMenuActivity.longitude);
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15);
             mGoogleMap.animateCamera(cameraUpdate);
-            setAddress(Main_Menu_Activity.longitude, Main_Menu_Activity.latitude);
+            setAddress(MainMenuActivity.longitude, MainMenuActivity.latitude);
         }
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -153,7 +170,7 @@ Zoom_out.setOnClickListener(new View.OnClickListener() {
         googleMap.setMyLocationEnabled(true);
 
         mGoogleMap.addMarker(new MarkerOptions().position(
-                new LatLng(Main_Menu_Activity.latitude,Main_Menu_Activity.longitude)).icon(BitmapDescriptorFactory.fromResource(R.drawable.current_pin)));
+                new LatLng(MainMenuActivity.latitude, MainMenuActivity.longitude)).icon(BitmapDescriptorFactory.fromResource(R.drawable.current_pin)));
     }
 
     private void setAddress(double longitude, double latitude) {
@@ -194,8 +211,8 @@ Zoom_out.setOnClickListener(new View.OnClickListener() {
 
 
     }
-    protected void attachBaseContext(Context base)
-    {
+
+    protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 }

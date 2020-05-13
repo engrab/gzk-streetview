@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route.classes;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.utiles;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;

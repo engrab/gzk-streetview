@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,19 +25,15 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.Famous_Places;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LiveAddress;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.Search_StreetView;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.Top_StreetView;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.Top_StreetView_Main;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.Universties_StreetView;
 import com.startapp.android.publish.adsCommon.Ad;
 import com.startapp.android.publish.adsCommon.StartAppAd;
 import com.startapp.android.publish.adsCommon.StartAppSDK;
 import com.startapp.android.publish.adsCommon.adListeners.AdEventListener;
 
-public class Main_Menu_Activity extends AppCompatActivity implements View.OnClickListener {
+public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
     public static double latitude = 0;
     public static double longitude = 0;
     LinearLayout Live_streetview, Streetview, University, Australia, World, Africa, Map, Worldwonder, Famouseplace, RouterFinder, Voice_Navigation, Nearby_Place, Current_Locaton, Rate_us, More_App, Share;
@@ -62,45 +59,44 @@ public class Main_Menu_Activity extends AppCompatActivity implements View.OnClic
         return true;
     }
 
+    private void BannerAdmob() {
+        final AdView adView = this.findViewById(R.id.adView);
+        adView.loadAd(new AdRequest.Builder().build());
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                adView.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
     @SuppressLint({"WrongViewCast", "CutPasteId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        adView = findViewById(R.id.adView);
-        adView.loadAd(new AdRequest.Builder().build());
         if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
-        StartAppSDK.init(this, "200779191", false);
-        StartAppAd.disableSplash();
-        startAppAd = new StartAppAd(this);
-        startAppAd.loadAd(new AdEventListener() {
-            @Override
-            public void onReceiveAd(Ad ad) {
-                if (startAppAd != null && startAppAd.isReady()) {
-                    startAppAd.showAd();
-                }
-            }
+        AppPurchasePref appPurchasePref = new AppPurchasePref(MainMenuActivity.this);
+        if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
 
-            @Override
-            public void onFailedToReceiveAd(Ad ad) {
+            BannerAdmob();
+            mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+            requestNewInterstitial();
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
 
-            }
-        });
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
-        requestNewInterstitial();
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                if (!isFromBackPress) {
                     clickListeners();
+
+                    requestNewInterstitial();
                 }
-                requestNewInterstitial();
-            }
-        });
+            });
+        }
         setUpLoation();
         Live_streetview = findViewById(R.id.ic_live);
         Streetview = findViewById(R.id.ic_street);
@@ -157,48 +153,47 @@ public class Main_Menu_Activity extends AppCompatActivity implements View.OnClic
     }
 
 
-
     private void clickListeners() {
         switch (viewId) {
             case R.id.ic_live:
-                startActivity(new Intent(Main_Menu_Activity.this, Search_StreetView.class));
+                startActivity(new Intent(MainMenuActivity.this, SearchStreetViewActivity.class));
                 break;
             case R.id.ic_street:
-                startActivity(new Intent(Main_Menu_Activity.this, MainActivity.class));
+                startActivity(new Intent(MainMenuActivity.this, MainActivity.class));
                 break;
             case R.id.ic_famouse:
-                startActivity(new Intent(Main_Menu_Activity.this,Famous_Places.class));
+                startActivity(new Intent(MainMenuActivity.this, FamousPlacesActivity.class));
                 break;
             case R.id.ic_africa:
-                startActivity(new Intent(Main_Menu_Activity.this,Top_StreetView.class).putExtra("Type","Exploring Africa"));
-            break;
+                startActivity(new Intent(MainMenuActivity.this, TopStreetViewActivity.class).putExtra("Type", "Exploring Africa"));
+                break;
             case R.id.ic_map:
-                startActivity(new Intent(Main_Menu_Activity.this,Rout.class));
+                startActivity(new Intent(MainMenuActivity.this, RoutActivity.class));
                 break;
             case R.id.ic_wonder:
-                startActivity(new Intent(Main_Menu_Activity.this,Top_StreetView.class).putExtra("Type","WorldWonders"));
-            break;
-            case R.id.ic_university:
-                startActivity(new Intent(Main_Menu_Activity.this, Universties_StreetView.class));
+                startActivity(new Intent(MainMenuActivity.this, TopStreetViewActivity.class).putExtra("Type", "WorldWonders"));
                 break;
-                case R.id.ic_route:
-                startActivity(new Intent(Main_Menu_Activity.this, Route_Finder_Activity.class));
+            case R.id.ic_university:
+                startActivity(new Intent(MainMenuActivity.this, UniverstiesStreetViewActivity.class));
+                break;
+            case R.id.ic_route:
+                startActivity(new Intent(MainMenuActivity.this, RouteFinderActivity.class));
                 break;
             case R.id.ic_voice:
-                startActivity(new Intent(Main_Menu_Activity.this, Voice_Navigation_Activity.class));
+                startActivity(new Intent(MainMenuActivity.this, VoiceNavigationActivity.class));
                 break;
             case R.id.ic_nearby:
-                startActivity(new Intent(Main_Menu_Activity.this, Nearest_Places_Activity.class));
+                startActivity(new Intent(MainMenuActivity.this, NearestPlacesActivity.class));
                 break;
             case R.id.ic_world:
-                startActivity(new Intent(Main_Menu_Activity.this, Top_StreetView_Main.class));
+                startActivity(new Intent(MainMenuActivity.this, TopStreetViewMain.class));
                 break;
             case R.id.ic_current:
-                startActivity(new Intent(Main_Menu_Activity.this, LiveAddress.class));
+                startActivity(new Intent(MainMenuActivity.this, LiveAddressActivity.class));
                 break;
             case R.id.ic_australia:
-startActivity(new Intent(Main_Menu_Activity.this,Top_StreetView.class).putExtra("Type","Australia Highlights"));
-break;
+                startActivity(new Intent(MainMenuActivity.this, TopStreetViewActivity.class).putExtra("Type", "Australia Highlights"));
+                break;
             case R.id.ic_share:
                 try {
                     Intent sharingIntent = new Intent(Intent.ACTION_SEND);

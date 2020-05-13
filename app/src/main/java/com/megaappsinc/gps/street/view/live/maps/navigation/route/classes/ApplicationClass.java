@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.classes;
 
 import android.content.Context;
 

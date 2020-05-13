@@ -15,12 +15,12 @@ import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
 
 import java.util.List;
 
-public class Voice_Navigation_Adapter extends RecyclerView.Adapter<Voice_Navigation_Adapter.ViewHolder>
+public class VoiceNavigationAdapter extends RecyclerView.Adapter<VoiceNavigationAdapter.ViewHolder>
 {
     private Activity context;
     private List<String> list;
 
-    public Voice_Navigation_Adapter(Activity context, List<String> list)
+    public VoiceNavigationAdapter(Activity context, List<String> list)
     {
         this.context = context;
         this.list = list;

@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +21,8 @@ import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback;
 import com.google.android.gms.maps.StreetViewPanorama;
 import com.google.android.gms.maps.StreetViewPanoramaFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.StreetView_Map_Activity;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements OnStreetViewPanor
     StreetViewPanorama mStreetViewPanorama;
     private String TAG = MainActivity.class.getSimpleName();
     private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
-    private boolean isFromBackPress = false;
 
     private void SetupToolbar()
     {
@@ -50,9 +50,8 @@ public class MainActivity extends AppCompatActivity implements OnStreetViewPanor
                 @Override
                 public void onClick(View v)
                 {
-                    if (!isFromBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded())
+                    if (mInterstitialAd != null && mInterstitialAd.isLoaded())
                     {
-                        isFromBackPress = true;
                         mInterstitialAd.show();
                     }
                     else
@@ -75,33 +74,33 @@ public class MainActivity extends AppCompatActivity implements OnStreetViewPanor
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             context = MainActivity.this;
-            BannerAdmob();
             SetupToolbar();
-            mInterstitialAd = new InterstitialAd(this);
-            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            mInterstitialAd.setAdListener(new AdListener()
-            {
-                @Override
-                public void onAdClosed()
-                {
-                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                    if (!isFromBackPress)
-                    {
-                        if (mStreetViewPanorama != null)
-                        {
-                            mStreetViewPanorama.setPosition(streetViewList.get(randInt()));
-                        }
+            AppPurchasePref appPurchasePref = new AppPurchasePref(MainActivity.this);
+            if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
+
+                BannerAdmob();
+                mInterstitialAd = new InterstitialAd(this);
+                mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                mInterstitialAd.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdClosed() {
+                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+                            if (mStreetViewPanorama != null) {
+                                mStreetViewPanorama.setPosition(streetViewList.get(randInt()));
+                            }
+
                     }
-                }
-            });
+                });
+            }
             streetViewPlaces();
             findViewById(R.id.ivShuffle).setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    isFromBackPress = false;
+
                     if (mInterstitialAd != null && mInterstitialAd.isLoaded())
                     {
                         mInterstitialAd.show();
@@ -120,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements OnStreetViewPanor
                 @Override
                 public void onClick(View v)
                 {
-                    isFromBackPress = false;
                     callPlaceSearchIntent();
                 }
             });
@@ -507,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements OnStreetViewPanor
                     place = PlaceAutocomplete.getPlace(this, data);
                     Log.i(TAG, "Place:" + place.toString());
 
-                    startActivity(new Intent(context, StreetView_Map_Activity.class)
+                    startActivity(new Intent(context, StreetViewMapActivity.class)
                             .putExtra("latLng", place.getLatLng())
                             .putExtra("name", place.getName()));
                 }
@@ -526,21 +524,22 @@ public class MainActivity extends AppCompatActivity implements OnStreetViewPanor
     @Override
     public void onBackPressed()
     {
-        if (!isFromBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded())
-        {
-            isFromBackPress = true;
-            mInterstitialAd.show();
-        }
-        else
-        {
+
             super.onBackPressed();
-        }
+
     }
 
     private void BannerAdmob()
     {
-        AdView adView = this.findViewById(R.id.adView);
+        final AdView adView = this.findViewById(R.id.adView);
         adView.loadAd(new AdRequest.Builder().build());
+        adView.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                adView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override

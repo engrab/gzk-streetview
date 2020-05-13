@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -24,11 +25,13 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
 
 import java.text.DecimalFormat;
 
-public class Route_Finder_Activity extends AppCompatActivity implements View.OnClickListener
+public class RouteFinderActivity extends AppCompatActivity implements View.OnClickListener
 {
     int PLACE_PICKER_SOURCE_REQUEST = 11;
     int PLACE_PICKER_DESTINATION_REQUEST = 12;
@@ -44,10 +47,10 @@ public class Route_Finder_Activity extends AppCompatActivity implements View.OnC
     private TextView tvSourceAddress;
     private TextView tvSourceName;
     private ImageView ivDes;
-    private AdView mAdView;
     private LatLng sLatlng, dLatLng;
     private InterstitialAd mInterstitialAd;
     private Resources resources;
+    AdView mAdView;
 
     @Override
     protected void attachBaseContext(Context base)
@@ -61,13 +64,16 @@ public class Route_Finder_Activity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_finder);
         resources = getResources();
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mAdView = findViewById(R.id.adView);
-        mAdView.loadAd(new AdRequest.Builder().build());
+        AppPurchasePref appPurchasePref = new AppPurchasePref(this);
+        if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
+
+            mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            BannerAdmob();
+        }
         SetupToolbar();
-        context = Route_Finder_Activity.this;
+        context = RouteFinderActivity.this;
         findViewById(R.id.srl).setOnClickListener(this);
         findViewById(R.id.cv).setOnClickListener(this);
         findViewById(R.id.ll).setOnClickListener(this);
@@ -92,7 +98,19 @@ public class Route_Finder_Activity extends AppCompatActivity implements View.OnC
         tvSourceName = findViewById(R.id.tvSourceName);
         ivDes = findViewById(R.id.ivDes);
     }
+    private void BannerAdmob()
+    {
 
+        mAdView = this.findViewById(R.id.adView);
+        mAdView.loadAd(new AdRequest.Builder().build());
+        mAdView.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mAdView.setVisibility(View.VISIBLE);
+            }
+        });
+    }
     @Override
     public void onResume()
     {

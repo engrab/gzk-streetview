@@ -1,11 +1,13 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,53 +21,43 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.NearByModel;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.model.NearByModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Nearest_Places_Activity extends AppCompatActivity
-{
+public class NearestPlacesActivity extends AppCompatActivity {
     List<NearByModel> list;
     InterstitialAd mInterstitialAd;
     boolean isFromBackPress = false;
     int mPosition = 0;
     AdView mAdView;
 
-    private void SetupToolbar()
-    {
-        try
-        {
+    private void SetupToolbar() {
+        try {
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener()
-            {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    if (!isFromBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded())
-                    {
+                public void onClick(View v) {
+                    if (!isFromBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded()) {
                         isFromBackPress = true;
                         mInterstitialAd.show();
-                    }
-                    else
-                    {
+                    } else {
                         finish();
                     }
                 }
             });
-        }
-        catch (Exception ignored)
-        {
+        } catch (Exception ignored) {
         }
     }
 
-    private void listOptions()
-    {
-        try
-        {
+    private void listOptions() {
+        try {
             list = new ArrayList<>();
             list.add(new NearByModel(R.drawable.accountant, getString(R.string.txt_accounting)));
             list.add(new NearByModel(R.drawable.airport, getString(R.string.txt_airport)));
@@ -156,206 +148,169 @@ public class Nearest_Places_Activity extends AppCompatActivity
             list.add(new NearByModel(R.drawable.subway_station, getString(R.string.txt_subway_station)));
             list.add(new NearByModel(R.drawable.synagogue, getString(R.string.txt_synagogue)));
             list.add(new NearByModel(R.drawable.taxi_stand, getString(R.string.txt_taxi_stand)));
-            list.add(new NearByModel(R.drawable.hindu_temple,getString(R.string.txt_temple)));
+            list.add(new NearByModel(R.drawable.hindu_temple, getString(R.string.txt_temple)));
             list.add(new NearByModel(R.drawable.train_station, getString(R.string.txt_train_station)));
             list.add(new NearByModel(R.drawable.transit_station, getString(R.string.txt_transit_station)));
             list.add(new NearByModel(R.drawable.travel_agency, getString(R.string.txt_travel_agency)));
             list.add(new NearByModel(R.drawable.university, getString(R.string.txt_university)));
             list.add(new NearByModel(R.drawable.veterinary_care, getString(R.string.txt_veterinary_care)));
             list.add(new NearByModel(R.drawable.zoo, getString(R.string.txt_zoo)));
-        }
-        catch (Exception ignored)
-        {
+        } catch (Exception ignored) {
         }
     }
 
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        try
-        {
+    protected void onCreate(Bundle savedInstanceState) {
+        try {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.nearest_places);
-            BannerAdmob();
             SetupToolbar();
-            mInterstitialAd = new InterstitialAd(this);
-            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
-            requestNewInterstitial();
-            mInterstitialAd.setAdListener(new AdListener()
-            {
-                @Override
-                public void onAdClosed()
-                {
-                    try
-                    {
-                        requestNewInterstitial();
-                        if (!isFromBackPress)
-                        {
-                            showNearBy();
+            AppPurchasePref appPurchasePref = new AppPurchasePref(NearestPlacesActivity.this);
+            if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
+
+                BannerAdmob();
+                mInterstitialAd = new InterstitialAd(this);
+                mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+                requestNewInterstitial();
+                mInterstitialAd.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdClosed() {
+                        try {
+                            requestNewInterstitial();
+                            if (!isFromBackPress) {
+                                showNearBy();
+                            }
+                        } catch (Exception ignored) {
                         }
                     }
-                    catch (Exception ignored)
-                    {
-                    }
-                }
-            });
+                });
+            }
             listOptions();
             GridView gv = findViewById(R.id.gridView1_masha);
             gv.setAdapter(new AdapterNearestPlaces(this));
-        }
-        catch (Exception ignored)
-        {
+        } catch (Exception ignored) {
         }
     }
 
-    private void requestNewInterstitial()
-    {
+    private void requestNewInterstitial() {
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
-    private void BannerAdmob()
-    {
-        // TODO Auto-generated method stub
-        mAdView = this.findViewById(R.id.adView);
-        mAdView.loadAd(new AdRequest.Builder().build());
+    private void BannerAdmob() {
+        final AdView adView = this.findViewById(R.id.adView);
+        adView.loadAd(new AdRequest.Builder().build());
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                adView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
-        try
-        {
-            if (mAdView != null)
-            {
+        try {
+            if (mAdView != null) {
                 mAdView.resume();
             }
-        }
-        catch (Exception ignored)
-        {
+        } catch (Exception ignored) {
         }
     }
 
     @Override
-    public void onPause()
-    {
-        if (mAdView != null)
-        {
+    public void onPause() {
+        if (mAdView != null) {
             mAdView.pause();
         }
         super.onPause();
     }
 
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         super.onDestroy();
-        if (mAdView != null)
-        {
+        if (mAdView != null) {
             mAdView.destroy();
         }
     }
 
 
     @Override
-    public void onBackPressed()
-    {
-        if (!isFromBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded())
-        {
+    public void onBackPressed() {
+        if (!isFromBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded()) {
             isFromBackPress = true;
             mInterstitialAd.show();
-        }
-        else
-        {
+        } else {
             super.onBackPressed();
         }
     }
 
-    private void showNearBy()
-    {
+    private void showNearBy() {
         Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + list.get(mPosition).text);
         Intent mapIntent = new Intent("android.intent.action.VIEW", gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
-        if (mapIntent.resolveActivity(getPackageManager()) != null)
-        {
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(mapIntent);
         }
     }
 
-    public class AdapterNearestPlaces extends BaseAdapter
-    {
+    public class AdapterNearestPlaces extends BaseAdapter {
         private LayoutInflater inflater_new;
         private Context context;
 
-        AdapterNearestPlaces(Nearest_Places_Activity mainActivity)
-        {
+        AdapterNearestPlaces(NearestPlacesActivity mainActivity) {
             context = mainActivity;
             inflater_new = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
-        public int getCount()
-        {
+        public int getCount() {
             // TODO Auto-generated method stub
             return list.size();
         }
 
         @Override
-        public Object getItem(int position)
-        {
+        public Object getItem(int position) {
             // TODO Auto-generated method stub
             return position;
         }
 
         @Override
-        public long getItemId(int position)
-        {
+        public long getItemId(int position) {
             // TODO Auto-generated method stub
             return position;
         }
 
         @Override
-        public View getView(final int position, View convertView, ViewGroup parent)
-        {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             Holder holder = new Holder();
             View rowView = inflater_new.inflate(R.layout.near_by_row_new, null);
-            try
-            {
+            try {
                 holder.tv_new = rowView.findViewById(R.id.texticon_new);
                 holder.img_new = rowView.findViewById(R.id.tpyeicon_new);
                 holder.tv_new.setText(list.get(position).text);
                 Glide.with(context).load(list.get(position).id).into(holder.img_new);
-                rowView.setOnClickListener(new View.OnClickListener()
-                {
+                rowView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view)
-                    {
-                        try
-                        {
+                    public void onClick(View view) {
+                        try {
                             mPosition = position;
                             isFromBackPress = false;
-                            if (mInterstitialAd != null && mInterstitialAd.isLoaded())
-                            {
+                            if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
                                 mInterstitialAd.show();
-                            }
-                            else
-                            {
+                            } else {
                                 showNearBy();
                             }
-                        }
-                        catch (Exception ignored)
-                        {
+                        } catch (Exception ignored) {
                         }
                     }
                 });
-            }
-            catch (Exception ignored)
-            {
+            } catch (Exception ignored) {
             }
             return rowView;
         }
 
-        class Holder
-        {
+        class Holder {
             TextView tv_new;
             ImageView img_new;
         }
@@ -363,8 +318,7 @@ public class Nearest_Places_Activity extends AppCompatActivity
     }
 
     @Override
-    protected void attachBaseContext(Context base)
-    {
+    protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 }

@@ -1,10 +1,11 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route.classes;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -23,11 +24,12 @@ import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
 
-public class Search_StreetView extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class SearchStreetViewActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     ImageView btn;
     private PlaceAutocompleteFragment autocompleteFragment;
-    private String TAG = Search_StreetView.class.getSimpleName();
+    private String TAG = SearchStreetViewActivity.class.getSimpleName();
     private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
     private GoogleApiClient mGoogleApiClient;
     InterstitialAd mInterstitialAd;
@@ -36,17 +38,22 @@ public class Search_StreetView extends Activity implements GoogleApiClient.Conne
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_search__street_view);
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen ));
-        requestNewInterstitial();
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                requestNewInterstitial();
 
-            }
-        });
-        btn = (ImageView) findViewById(R.id.fab);
+        AppPurchasePref appPurchasePref = new AppPurchasePref(this);
+        if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
+
+            mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+            requestNewInterstitial();
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
+                    requestNewInterstitial();
+
+                }
+            });
+        }
+        btn = findViewById(R.id.fab);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +98,7 @@ public class Search_StreetView extends Activity implements GoogleApiClient.Conne
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 Log.i(TAG, "Place:" + place.toString());
 
-                Intent intent = new Intent(Search_StreetView.this, StreetView_Map_Activity.class);
+                Intent intent = new Intent(SearchStreetViewActivity.this, StreetViewMapActivity.class);
                 intent.putExtra("latLng", place.getLatLng());
                 startActivity(intent);
 

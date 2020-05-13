@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,12 +6,14 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+
 import cn.refactor.lib.colordialog.PromptDialog;
 import permission.auron.com.marshmallowpermissionhelper.ActivityManagePermission;
 import permission.auron.com.marshmallowpermissionhelper.PermissionResult;
 import permission.auron.com.marshmallowpermissionhelper.PermissionUtils;
 
-public class SplashScreen extends ActivityManagePermission
+public class SplashScreenActivity extends ActivityManagePermission
 {
     private boolean denay = false;
 
@@ -50,7 +52,7 @@ public class SplashScreen extends ActivityManagePermission
                                 {
                                     try
                                     {
-                                        startActivity(new Intent(SplashScreen.this, Select_Language_Activity.class));
+                                        startActivity(new Intent(SplashScreenActivity.this, SelectLanguageActivity.class));
                                         // close this activity
                                         finish();
                                     }
@@ -95,7 +97,7 @@ public class SplashScreen extends ActivityManagePermission
     {
         try
         {
-            new PromptDialog(SplashScreen.this)
+            new PromptDialog(SplashScreenActivity.this)
                     .setDialogType(PromptDialog.DIALOG_TYPE_WARNING)
                     .setAnimationEnable(true)
                     .setTitleText(getString(R.string.pdialog_title))
@@ -107,7 +109,7 @@ public class SplashScreen extends ActivityManagePermission
                         {
                             try
                             {
-                                openSettingsApp(SplashScreen.this);
+                                openSettingsApp(SplashScreenActivity.this);
                             }
                             catch (Exception ignored)
                             {

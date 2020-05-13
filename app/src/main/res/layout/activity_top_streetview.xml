@@ -40,22 +40,16 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/appLovinAdView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_centerHorizontal="true"/>
 
     <androidx.appcompat.widget.RecyclerView
         android:id="@+id/rvItems"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ll"
-        android:layout_below="@+id/appLovinAdView"/>
+        android:layout_above="@+id/llAdview"
+        android:layout_below="@+id/appBarLayout"/>
 
     <LinearLayout
-        android:id="@+id/ll"
+        android:id="@+id/llAdview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

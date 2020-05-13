@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route.classes;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,14 +20,15 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.model.TopStreetViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Universties_StreetView extends AppCompatActivity {
+public class UniverstiesStreetViewActivity extends AppCompatActivity {
     Activity context;
-    List<TopStreetView_Model> placesModelList;
+    List<TopStreetViewModel> placesModelList;
     RecyclerView lvfamus;
     InterstitialAd mInterstitialAd;
     int mPosition = 0;
@@ -41,7 +42,7 @@ public class Universties_StreetView extends AppCompatActivity {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_top_streetview);
-            context = Universties_StreetView.this;
+            context = UniverstiesStreetViewActivity.this;
             tvTitle = findViewById(R.id.tvTitle);
             mAdView = findViewById(R.id.adView);
             mAdView.loadAd(new AdRequest.Builder().build());
@@ -66,13 +67,13 @@ public class Universties_StreetView extends AppCompatActivity {
     private void listOptions() {
         try {
             placesModelList = new ArrayList<>();
-            tvTitle.setText(String.valueOf("World Class Universities"));
-            placesModelList.add(new TopStreetView_Model("University of Italy",  44.496865,11.352459));
-            placesModelList.add(new TopStreetView_Model("mexico-universities", 21.166254,-101.715729));
-            placesModelList.add(new TopStreetView_Model("Indian Universties", 28.567468,77.208384));
-            placesModelList.add(new TopStreetView_Model("Japanese University", 35.709066,139.720978));
-            placesModelList.add(new TopStreetView_Model("Uk Universties", 51.756454,-1.260214));
-            placesModelList.add(new TopStreetView_Model("Turkey Universities", 41.08337,29.051893));
+            tvTitle.setText("World Class Universities");
+            placesModelList.add(new TopStreetViewModel("University of Italy",  44.496865,11.352459));
+            placesModelList.add(new TopStreetViewModel("mexico-universities", 21.166254,-101.715729));
+            placesModelList.add(new TopStreetViewModel("Indian Universties", 28.567468,77.208384));
+            placesModelList.add(new TopStreetViewModel("Japanese University", 35.709066,139.720978));
+            placesModelList.add(new TopStreetViewModel("Uk Universties", 51.756454,-1.260214));
+            placesModelList.add(new TopStreetViewModel("Turkey Universities", 41.08337,29.051893));
 
             if (placesModelList != null && placesModelList.size() > 0) {
                 lvfamus = findViewById(R.id.rvItems);
@@ -85,7 +86,7 @@ public class Universties_StreetView extends AppCompatActivity {
 
     private void clickListener() {
         try {
-            startActivity(new Intent(context, Top_StreetView.class)
+            startActivity(new Intent(context, TopStreetViewActivity.class)
                     .putExtra("Type", placesModelList.get(mPosition).PlaceName));
         } catch (Exception ignored) {
         }

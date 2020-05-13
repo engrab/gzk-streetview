@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".Select_Language_Activity">
+    android:background="@drawable/bg">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -30,17 +28,19 @@
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:visibility="visible"/>
+                android:visibility="visible" />
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/appLovinAdView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/appBarLayout"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_home_footer" />
 
     <TextView
         android:id="@+id/title"
@@ -53,7 +53,7 @@
         android:textAppearance="@style/TextAppearanceShadow"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/TlType"
@@ -75,13 +75,13 @@
             android:textAppearance="@style/TextAppearanceShadow"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/SpLanguage"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.7"/>
+            android:layout_weight="0.7" />
     </LinearLayout>
 
     <ImageView
@@ -91,16 +91,24 @@
         android:layout_below="@+id/TlType"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:src="@drawable/ic_play"/>
+        android:src="@drawable/ic_play" />
 
-    <com.google.android.gms.ads.AdView
+    <ImageView
+        android:id="@+id/iv_remove_ads"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_above="@+id/adView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/remove_ads" />
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_home_footer"/>
+        ads:adUnitId="@string/banner_home_footer" />
 
 </RelativeLayout>

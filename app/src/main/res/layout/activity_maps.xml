@@ -13,7 +13,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:visibility="gone"
         ads:adSize="SMART_BANNER"
         ads:adUnitId="@string/banner_home_footer"/>
 

@@ -1,37 +1,54 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
 
-public class Select_Language_Activity extends AppCompatActivity
+import static com.megaappsinc.gps.street.view.live.maps.navigation.route.utiles.Utils.animation;
+
+public class SelectLanguageActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler
 {
     InterstitialAd mInterstitialAd;
-    boolean isFormBackPress = false;
     int mPosition = 0;
     private Activity context;
     private Spinner spLanguage;
     private LayoutInflater inflter;
     private AdView mAdView;
     private String lang;
+    BillingProcessor bp;
+    ImageView ivRemoveAd;
+    private Dialog mDialog;
+
+    private AppPurchasePref appPurchasePref;
 
     private String[] languages = {"Afrikaans",
             "Albanian",
@@ -332,19 +349,27 @@ public class Select_Language_Activity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_language);
-        context = Select_Language_Activity.this;
-        Init();
-    }
+        context = SelectLanguageActivity.this;
+        appPurchasePref = new AppPurchasePref(getApplicationContext());
 
-    private void Init()
-    {
-        try
-        {
-            context = Select_Language_Activity.this;
-            lang = LocaleHelper.getLanguage(Select_Language_Activity.this);
-            inflter = (LayoutInflater.from(context));
-            spLanguage = findViewById(R.id.SpLanguage);
-            spLanguage.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        bp = new BillingProcessor(getApplicationContext(), "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhvwzs6vdSpjRmMgR10Hsx6hbhbz0qy43z+5FpDmXyaFes1Mv15M0j8YLxxZbYgq4xXeBSAP62NFy5CizDcbf0wv0XS5A43Yo78aZYlYuGl2qr5qrHy6tZisZlvpDU2N4b6xDDxJU1qPKgGtlYqjmD+Bj95NqUlppM27j75MSZKuUdQEdkdfAm9YjLZp5xK4dS3P/kezvgs50L9KNN3kRg6Dx0jvt5Xi+FZRCGb/smMrUYKDQ+W4eTIMv/rXeetQjaOWmp8y2JnVsXxd1Ih0YXa2xC2nAKXgrDaQyQF7mKEPEjfHU3oMq4+BNCkaNq+kXRZk6ELV9oLuy7GwAhHsx1wIDAQAB", this);
+
+        ivRemoveAd = findViewById(R.id.iv_remove_ads);
+        ivRemoveAd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    bp.purchase(SelectLanguageActivity.this, appPurchasePref.getProductId());
+                } catch (Exception ignored) {
+                }
+            }
+        });
+        animation(ivRemoveAd);
+
+
+        if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
+
+
             mInterstitialAd = new InterstitialAd(this);
             mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
             mInterstitialAd.loadAd(new AdRequest.Builder().build());
@@ -353,28 +378,87 @@ public class Select_Language_Activity extends AppCompatActivity
                 @Override
                 public void onAdClosed()
                 {
-                    if (isFormBackPress)
-                    {
-                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                    }
-                    else
-                    {
-                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                        onSelection();
-                    }
+
+                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                    onSelection();
+
                 }
             });
             mAdView = findViewById(R.id.adView);
             mAdView.loadAd(new AdRequest.Builder().build());
+            mAdView.setAdListener(new AdListener(){
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    mAdView.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+
+        Init();
+    }
+    @Override
+    public void onProductPurchased(String productId, TransactionDetails details) {
+        ViewUpdate();
+        appPurchasePref.setProductId(productId);
+        if (details != null) {
+            appPurchasePref.setItemDetails(details.toString());
+        }
+    }
+
+    @Override
+    public void onPurchaseHistoryRestored() {
+        ViewUpdate();
+    }
+
+    @Override
+    public void onBillingError(int errorCode, @Nullable Throwable error) {
+
+    }
+
+    @Override
+    public void onBillingInitialized() {
+        ViewUpdate();
+    }
+
+
+    private void ViewUpdate() {
+        if (bp != null && bp.isPurchased(appPurchasePref.getProductId())) {
+            appPurchasePref.setProductId(getPackageName());
+            appPurchasePref.setItemDetails(getPackageName());
+            ivRemoveAd.setVisibility(View.INVISIBLE);
+
+
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        if (bp != null) {
+            bp.release();
+        }
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
+
+    private void Init()
+    {
+        try
+        {
+            context = SelectLanguageActivity.this;
+            lang = LocaleHelper.getLanguage(SelectLanguageActivity.this);
+            inflter = (LayoutInflater.from(context));
+            spLanguage = findViewById(R.id.SpLanguage);
+            spLanguage.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+
             spLanguage.setAdapter(new CustomAdapter());
-            SetupToolbar();
             findViewById(R.id.IvForward).setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
                 {
                     mPosition = spLanguage.getSelectedItemPosition();
-                    isFormBackPress = false;
                     if (mInterstitialAd != null && mInterstitialAd.isLoaded())
                     {
                         mInterstitialAd.show();
@@ -397,7 +481,7 @@ public class Select_Language_Activity extends AppCompatActivity
         try
         {
             LocaleHelper.setLocale(context, values[spLanguage.getSelectedItemPosition()]);
-            startActivity(new Intent(context, Main_Menu_Activity.class));
+            startActivity(new Intent(context, MainMenuActivity.class));
         }
         catch (Exception ignored)
         {
@@ -422,34 +506,6 @@ public class Select_Language_Activity extends AppCompatActivity
         }
     }
 
-    private void SetupToolbar()
-    {
-        try
-        {
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    if (!isFormBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded())
-                    {
-                        isFormBackPress = true;
-                        mInterstitialAd.show();
-                    }
-                    else
-                    {
-                        finish();
-                    }
-                }
-            });
-        }
-        catch (Exception ignored)
-        {
-        }
-    }
 
     @Override
     public void onResume()
@@ -478,29 +534,72 @@ public class Select_Language_Activity extends AppCompatActivity
     }
 
     @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        if (mAdView != null)
-        {
-            mAdView.destroy();
+    public void onBackPressed() {
+
+        if (mDialog != null && mDialog.isShowing()) {
+            mDialog.dismiss();
+        } else {
+            ExitDialog();
+        }
+
+
+    }
+    private void ExitDialog() {
+
+        try {
+            View view = LayoutInflater.from(SelectLanguageActivity.this).inflate(R.layout.exit_dialog, null, false);
+            view.findViewById(R.id.btnYes).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName()));
+                        if (intent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(intent);
+                        }
+                        mDialog.dismiss();
+                        finish();
+                    } catch (Exception ignored) {
+                    }
+
+                }
+            });
+            view.findViewById(R.id.btnNo).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDialog.dismiss();
+                }
+            });
+            RatingBar ratingBar = view.findViewById(R.id.ratingBar);
+            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                @Override
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName()));
+                        if (intent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(intent);
+                        }
+                        mDialog.dismiss();
+                    } catch (Exception ignored) {
+                    }
+
+                }
+            });
+
+
+            mDialog = new Dialog(SelectLanguageActivity.this, R.style.MaterialDialogSheet);
+            mDialog.setContentView(view);
+            mDialog.setCancelable(true);
+            mDialog.setCanceledOnTouchOutside(false);
+            if (mDialog.getWindow() != null) {
+                mDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                mDialog.getWindow().setGravity(Gravity.BOTTOM);
+            }
+            mDialog.show();
+        } catch (Exception ignored) {
         }
     }
-
-    @Override
-    public void onBackPressed()
-    {
-        if (!isFormBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded())
-        {
-            isFormBackPress = true;
-            mInterstitialAd.show();
-        }
-        else
-        {
-            super.onBackPressed();
-        }
-    }
-
     public class CustomAdapter extends BaseAdapter
     {
         @Override

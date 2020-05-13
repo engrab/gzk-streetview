@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -20,9 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.DirectionsJSONParser;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
-import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.Utils;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -47,6 +45,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.DirectionsJSONParser;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.utiles.Utils;
 
 import org.json.JSONObject;
 
@@ -63,7 +65,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class Rout extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener, GoogleMap
+public class RoutActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener, GoogleMap
         .OnMyLocationButtonClickListener
 {
     boolean refresh = false;
@@ -123,27 +125,19 @@ public class Rout extends AppCompatActivity implements OnMapReadyCallback, View.
         {
             style = bundle.getString("style");
         }
-        if (Utils.isNetworkAvailable(getApplicationContext()))
-        {
-            mInterstitialAd = new InterstitialAd(this);
-            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
-            mInterstitialAd.loadAd(new AdRequest.Builder()
-                    .build());
+        AppPurchasePref appPurchasePref = new AppPurchasePref(this);
+        if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
 
-            mAdView = findViewById(R.id.adView);
+            if (Utils.isNetworkAvailable(getApplicationContext())) {
+                BannerAdmob();
+                mInterstitialAd = new InterstitialAd(this);
+                mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+                mInterstitialAd.loadAd(new AdRequest.Builder()
+                        .build());
 
-            mAdView.loadAd(new AdRequest.Builder()
-                    .build());
 
-            mAdView.setAdListener(new AdListener()
-            {
-                @Override
-                public void onAdLoaded()
-                {
-                    mAdView.setVisibility(View.VISIBLE);
-                    mAdView.bringToFront();
-                }
-            });
+            }
+
         }
         geocoder = new Geocoder(this, Locale.getDefault());
         findViewById(R.id.latlong).setVisibility(View.GONE);
@@ -167,6 +161,18 @@ public class Rout extends AppCompatActivity implements OnMapReadyCallback, View.
             handler.postDelayed(r, repeatTime);
             topline.setOnClickListener(this);
         }
+    }
+    private void BannerAdmob()
+    {
+        final AdView adView = this.findViewById(R.id.adView);
+        adView.loadAd(new AdRequest.Builder().build());
+        adView.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                adView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -437,7 +443,7 @@ public class Rout extends AppCompatActivity implements OnMapReadyCallback, View.
             Toast.makeText(getApplicationContext(), getString(R.string.txt_select_destination), Toast.LENGTH_SHORT).show();
             return;
         }
-        final Dialog dialog = new Dialog(Rout.this, R.style.MaterialDialogSheet);
+        final Dialog dialog = new Dialog(RoutActivity.this, R.style.MaterialDialogSheet);
         dialog.setContentView(R.layout.rout_info_dialog);
         dialog.setTitle(getString(R.string.txt_route_information));
         dialog.setCanceledOnTouchOutside(false);
@@ -574,7 +580,7 @@ public class Rout extends AppCompatActivity implements OnMapReadyCallback, View.
                         {
                             // Show the dialog by calling startResolutionForResult(), and check the result
                             // in onActivityResult().
-                            status.startResolutionForResult(Rout.this, 12);
+                            status.startResolutionForResult(RoutActivity.this, 12);
                         }
                         catch (IntentSender.SendIntentException e)
                         {

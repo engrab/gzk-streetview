@@ -1,4 +1,4 @@
-package com.megaappsinc.gps.street.view.live.maps.navigation.route.classes;
+package com.megaappsinc.gps.street.view.live.maps.navigation.route.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,22 +37,22 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.StreetViewPanoramaLocation;
 import com.google.android.material.tabs.TabLayout;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.utiles.Utils;
 
 import java.util.List;
 import java.util.Locale;
 
-public class StreetView_Map_Activity extends AppCompatActivity {
+public class StreetViewMapActivity extends AppCompatActivity {
 
     LatLng latLng;
-    private InterstitialAd mInterstitialAd;
 
     @Override
     public void onBackPressed() {
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            super.onBackPressed();
-        }
+
+        super.onBackPressed();
+
     }
 
     private void Init() {
@@ -71,9 +72,7 @@ public class StreetView_Map_Activity extends AppCompatActivity {
         if (bundle != null) {
             latLng = bundle.getParcelable("latLng");
         }
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
         Init();
 
     }
@@ -86,6 +85,7 @@ public class StreetView_Map_Activity extends AppCompatActivity {
         private Bundle mBundle;
         private GoogleMap mMap;
         TextView knowAddressText, cityText, addressText, longitudeText, latitudeText, postalCodeText, stateText, countyText;
+
         public MapFragment() {
             // Required empty public constructor
         }
@@ -107,8 +107,8 @@ public class StreetView_Map_Activity extends AppCompatActivity {
             mMapView = view.findViewById(R.id.map);
             knowAddressText = view.findViewById(R.id.knowAddressText);
             cityText = view.findViewById(R.id.cityText);
-            addressText =view.findViewById(R.id.addressText);
-            longitudeText =view.findViewById(R.id.longitudeText);
+            addressText = view.findViewById(R.id.addressText);
+            longitudeText = view.findViewById(R.id.longitudeText);
             latitudeText = view.findViewById(R.id.latitudeText);
             postalCodeText = view.findViewById(R.id.postalCodeText);
             stateText = view.findViewById(R.id.stateText);
@@ -205,6 +205,7 @@ public class StreetView_Map_Activity extends AppCompatActivity {
             }
             super.onDestroy();
         }
+
         private void setAddress(double longitude, double latitude) {
             try {
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
@@ -381,9 +382,9 @@ public class StreetView_Map_Activity extends AppCompatActivity {
         }
 
     }
+
     @Override
-    protected void attachBaseContext(Context base)
-    {
+    protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 }
