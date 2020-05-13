@@ -282,7 +282,7 @@
     <string name="universities_street_view">Universities Street View</string>
     <string name="rate_us">Rate Us</string>
     <string name="more_apps">More App</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
 
 
 </resources>
