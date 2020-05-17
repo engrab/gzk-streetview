@@ -8,14 +8,16 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,6 +34,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
+import com.megaappsinc.gps.street.view.live.maps.navigation.route.utiles.Utils;
 
 import static com.megaappsinc.gps.street.view.live.maps.navigation.route.utiles.Utils.animation;
 
@@ -44,11 +47,11 @@ public class SelectLanguageActivity extends AppCompatActivity implements Billing
     private LayoutInflater inflter;
     private AdView mAdView;
     private String lang;
+    private Dialog mDialog;
     BillingProcessor bp;
     ImageView ivRemoveAd;
-    private Dialog mDialog;
-
     private AppPurchasePref appPurchasePref;
+
 
     private String[] languages = {"Afrikaans",
             "Albanian",
@@ -348,26 +351,18 @@ public class SelectLanguageActivity extends AppCompatActivity implements Billing
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_select_language);
         context = SelectLanguageActivity.this;
-        appPurchasePref = new AppPurchasePref(getApplicationContext());
-
-        bp = new BillingProcessor(getApplicationContext(), "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhvwzs6vdSpjRmMgR10Hsx6hbhbz0qy43z+5FpDmXyaFes1Mv15M0j8YLxxZbYgq4xXeBSAP62NFy5CizDcbf0wv0XS5A43Yo78aZYlYuGl2qr5qrHy6tZisZlvpDU2N4b6xDDxJU1qPKgGtlYqjmD+Bj95NqUlppM27j75MSZKuUdQEdkdfAm9YjLZp5xK4dS3P/kezvgs50L9KNN3kRg6Dx0jvt5Xi+FZRCGb/smMrUYKDQ+W4eTIMv/rXeetQjaOWmp8y2JnVsXxd1Ih0YXa2xC2nAKXgrDaQyQF7mKEPEjfHU3oMq4+BNCkaNq+kXRZk6ELV9oLuy7GwAhHsx1wIDAQAB", this);
 
         ivRemoveAd = findViewById(R.id.iv_remove_ads);
-        ivRemoveAd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    bp.purchase(SelectLanguageActivity.this, appPurchasePref.getProductId());
-                } catch (Exception ignored) {
-                }
-            }
-        });
-        animation(ivRemoveAd);
-
+        appPurchasePref = new AppPurchasePref(getApplicationContext());
+        bp = new BillingProcessor(getApplicationContext(), getString(R.string.in_app_purchases), this);
 
         if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
+
 
 
             mInterstitialAd = new InterstitialAd(this);
@@ -396,9 +391,19 @@ public class SelectLanguageActivity extends AppCompatActivity implements Billing
         }
 
         Init();
+        ivRemoveAd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    bp.purchase(context, Utils.INAPPproductId);
+                } catch (Exception ignored) {
+                }
+            }
+        });
+        animation(ivRemoveAd);
     }
     @Override
-    public void onProductPurchased(String productId, TransactionDetails details) {
+    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
         ViewUpdate();
         appPurchasePref.setProductId(productId);
         if (details != null) {
@@ -423,11 +428,12 @@ public class SelectLanguageActivity extends AppCompatActivity implements Billing
 
 
     private void ViewUpdate() {
-        if (bp != null && bp.isPurchased(appPurchasePref.getProductId())) {
+        if (bp != null && bp.isPurchased(Utils.INAPPproductId)) {
             appPurchasePref.setProductId(getPackageName());
             appPurchasePref.setItemDetails(getPackageName());
-            ivRemoveAd.setVisibility(View.INVISIBLE);
-
+            ivRemoveAd.setVisibility(View.GONE);
+            mInterstitialAd = new InterstitialAd(SelectLanguageActivity.this);
+            mAdView = new AdView(SelectLanguageActivity.this);
 
         }
     }
@@ -481,7 +487,7 @@ public class SelectLanguageActivity extends AppCompatActivity implements Billing
         try
         {
             LocaleHelper.setLocale(context, values[spLanguage.getSelectedItemPosition()]);
-            startActivity(new Intent(context, MainMenuActivity.class));
+            startActivity(new Intent(context, MainActivity.class));
         }
         catch (Exception ignored)
         {

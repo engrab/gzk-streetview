@@ -18,40 +18,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/ic_live"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_live"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/live_street_view"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ic_street"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_wonder"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -77,8 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/explore"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -103,8 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_world"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -129,8 +103,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_wonder"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -156,8 +130,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_famous"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -181,8 +155,7 @@
                 android:id="@+id/ic_university"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_university"
-                android:layout_margin="5dp"
+                android:background="@drawable/university"
                 android:orientation="horizontal">
 
                 <TextView
@@ -209,8 +182,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_aus"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -235,7 +208,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_routr"
-                android:layout_margin="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -261,8 +233,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_voice"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -287,8 +259,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_nearby"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -313,8 +285,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_map"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -339,8 +311,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_current"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -365,8 +337,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_share"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -391,8 +363,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_moreapp"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -417,8 +389,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_rateus"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.megaappsinc.gps.street.view.live.maps.navigation.route">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -17,7 +16,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
-        android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.ApplicationClass"
+        android:name=".classes.ApplicationClass"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,7 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".activities.AllStreetViewActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -37,23 +37,21 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+            android:value="@string/google_maps_key" /> <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/app_id" />
 
         <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.SelectLanguageActivity"
+            android:name=".activities.SelectLanguageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.RouteFinderActivity"
+            android:name=".activities.RouteFinderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.SplashScreenActivity"
+            android:name=".activities.SplashScreenActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -67,27 +65,11 @@
         <!-- android:value="AIzaSyBo3ZMOQ34ff3FQMqSj7ZF5Fi52Jgy9vPE" /> -->
         <!--  -->
         <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.TopStreetViewMain"
+            android:name=".activities.RoutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.TopStreetViewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.FamousPlacesActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.RoutActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.NearestPlacesActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.MainActivity"
+            android:name=".activities.NearestPlacesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -96,26 +78,15 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.VoiceNavigationActivity"
+            android:name=".activities.VoiceNavigationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.SearchStreetViewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.LiveAddressActivity"
+            android:name=".activities.LiveAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.MainMenuActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.StreetViewMapActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.megaappsinc.gps.street.view.live.maps.navigation.route.activities.UniverstiesStreetViewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

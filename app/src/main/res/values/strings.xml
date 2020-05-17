@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Global Street View - GPS Driving Route Locator 3D</string>
-
-    <string name="banner_home_footer" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstitial_full_screen" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="in_app_purchases" translatable="false">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhvwzs6vdSpjRmMgR10Hsx6hbhbz0qy43z+5FpDmXyaFes1Mv15M0j8YLxxZbYgq4xXeBSAP62NFy5CizDcbf0wv0XS5A43Yo78aZYlYuGl2qr5qrHy6tZisZlvpDU2N4b6xDDxJU1qPKgGtlYqjmD+Bj95NqUlppM27j75MSZKuUdQEdkdfAm9YjLZp5xK4dS3P/kezvgs50L9KNN3kRg6Dx0jvt5Xi+FZRCGb/smMrUYKDQ+W4eTIMv/rXeetQjaOWmp8y2JnVsXxd1Ih0YXa2xC2nAKXgrDaQyQF7mKEPEjfHU3oMq4+BNCkaNq+kXRZk6ELV9oLuy7GwAhHsx1wIDAQAB</string>
 
 
     <string name="pdialog_title">Permission Denied</string>

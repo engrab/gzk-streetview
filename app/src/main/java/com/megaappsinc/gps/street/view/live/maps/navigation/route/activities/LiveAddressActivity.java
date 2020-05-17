@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -150,12 +149,12 @@ public class LiveAddressActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
-        if (MainMenuActivity.longitude != 0 && MainMenuActivity.latitude != 0) {
+        if (MainActivity.longitude != 0 && MainActivity.latitude != 0) {
 
-            LatLng latLng = new LatLng(MainMenuActivity.latitude, MainMenuActivity.longitude);
+            LatLng latLng = new LatLng(MainActivity.latitude, MainActivity.longitude);
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15);
             mGoogleMap.animateCamera(cameraUpdate);
-            setAddress(MainMenuActivity.longitude, MainMenuActivity.latitude);
+            setAddress(MainActivity.longitude, MainActivity.latitude);
         }
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -170,7 +169,7 @@ public class LiveAddressActivity extends AppCompatActivity implements OnMapReady
         googleMap.setMyLocationEnabled(true);
 
         mGoogleMap.addMarker(new MarkerOptions().position(
-                new LatLng(MainMenuActivity.latitude, MainMenuActivity.longitude)).icon(BitmapDescriptorFactory.fromResource(R.drawable.current_pin)));
+                new LatLng(MainActivity.latitude, MainActivity.longitude)).icon(BitmapDescriptorFactory.fromResource(R.drawable.current_pin)));
     }
 
     private void setAddress(double longitude, double latitude) {

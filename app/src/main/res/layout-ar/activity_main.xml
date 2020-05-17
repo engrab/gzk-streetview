@@ -18,32 +18,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/ic_live"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_live"
-                android:orientation="horizontal"
-                android:layout_margin="5dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/live_street_view"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ic_street"
@@ -181,8 +155,9 @@
                 android:id="@+id/ic_university"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/university"
-                android:orientation="horizontal">
+                android:background="@drawable/ic_university"
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -337,8 +312,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_current"
-                android:orientation="horizontal"
-                android:layout_margin="5dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"

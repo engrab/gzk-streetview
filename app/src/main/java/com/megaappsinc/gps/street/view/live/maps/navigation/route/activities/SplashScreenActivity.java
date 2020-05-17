@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.android.gms.ads.MobileAds;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
 
 import cn.refactor.lib.colordialog.PromptDialog;
@@ -28,6 +29,7 @@ public class SplashScreenActivity extends ActivityManagePermission
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.spalshscren);
+            MobileAds.initialize(getApplicationContext(), getString(R.string.app_id));
 
         }
         catch (Exception ignored)

@@ -20,14 +20,14 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.adapters.VoiceNavigationAdapter;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class VoiceNavigationActivity extends AppCompatActivity implements View.OnClickListener {
@@ -111,11 +111,10 @@ public class VoiceNavigationActivity extends AppCompatActivity implements View.O
             case R.id.iv:
             case R.id.cv:
                 try {
-                    PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                    startActivityForResult(builder.build(context), PLACE_PICKER_REQUEST);
-                } catch (GooglePlayServicesRepairableException e) {
-                    // TODO: Handle the error.
-                } catch (GooglePlayServicesNotAvailableException e) {
+                    List<Place.Field> fields = Arrays.asList(com.google.android.libraries.places.api.model.Place.Field.ID, com.google.android.libraries.places.api.model.Place.Field.NAME, com.google.android.libraries.places.api.model.Place.Field.LAT_LNG);
+                    Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(this);
+                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
+                } catch (Exception e) {
                     // TODO: Handle the error.
                 }
                 break;
@@ -195,7 +194,7 @@ public class VoiceNavigationActivity extends AppCompatActivity implements View.O
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK && data != null) {
                 try {
-                    Place place = PlacePicker.getPlace(context, data);
+                    Place place = Autocomplete.getPlaceFromIntent(data);
                     Uri gmmIntentUri = Uri.parse("google.navigation:q=" + place.getName());
                     Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                     mapIntent.setPackage("com.google.android.apps.maps");

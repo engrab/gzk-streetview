@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.mobileappsarcade.gps.street.view.live.maps.navigation.route"
+        applicationId "com.megaappsinc.gps.street.view.live.maps.navigation.route"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -16,6 +16,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue 'string', 'banner_home_footer', '"ca-app-pub-1496012843809759/7616147554"'
+            resValue 'string', 'interstitial_full_screen', '"ca-app-pub-1496012843809759/5053208170"'
+            resValue 'string', 'app_id', '"ca-app-pub-1496012843809759~2555392561"'
+        }
+        debug {
+            minifyEnabled false
+
+            resValue 'string', 'banner_home_footer', '"ca-app-pub-3940256099942544/6300978111"'
+            resValue 'string', 'interstitial_full_screen', '"ca-app-pub-3940256099942544/1033173712"'
+            resValue 'string', 'app_id', '"ca-app-pub-3940256099942544~3347511713"'
         }
     }
 }
@@ -30,9 +40,9 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.google.android.gms:play-services-ads:19.1.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'com.google.android.gms:play-services-places:15.0.1'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'com.startapp:inapp-sdk:3.8.2'
+    implementation 'com.google.android.libraries.places:places:2.2.0'
+
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.auron:permission-manage:1.1.7'
     implementation 'com.github.andyxialm:ColorDialog:1.0.0'

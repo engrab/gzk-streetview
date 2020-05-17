@@ -20,16 +20,18 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.R;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.AppPurchasePref;
 import com.megaappsinc.gps.street.view.live.maps.navigation.route.classes.LocaleHelper;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.List;
 
 public class RouteFinderActivity extends AppCompatActivity implements View.OnClickListener
 {
@@ -63,6 +65,9 @@ public class RouteFinderActivity extends AppCompatActivity implements View.OnCli
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_finder);
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
+        }
         resources = getResources();
         AppPurchasePref appPurchasePref = new AppPurchasePref(this);
         if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
@@ -172,14 +177,11 @@ public class RouteFinderActivity extends AppCompatActivity implements View.OnCli
             case R.id.tvSource:
                 try
                 {
-                    PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                    startActivityForResult(builder.build(context), PLACE_PICKER_SOURCE_REQUEST);
+                    List<Place.Field> fields = Arrays.asList(com.google.android.libraries.places.api.model.Place.Field.ID, com.google.android.libraries.places.api.model.Place.Field.NAME, com.google.android.libraries.places.api.model.Place.Field.LAT_LNG);
+                    Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(this);
+                    startActivityForResult(intent, PLACE_PICKER_SOURCE_REQUEST);
                 }
-                catch (GooglePlayServicesRepairableException e)
-                {
-                    // TODO: Handle the error.
-                }
-                catch (GooglePlayServicesNotAvailableException e)
+                catch (Exception e)
                 {
                     // TODO: Handle the error.
                 }
@@ -191,14 +193,11 @@ public class RouteFinderActivity extends AppCompatActivity implements View.OnCli
             case R.id.tvDestination:
                 try
                 {
-                    PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                    startActivityForResult(builder.build(context), PLACE_PICKER_DESTINATION_REQUEST);
+                    List<Place.Field> fields = Arrays.asList(com.google.android.libraries.places.api.model.Place.Field.ID, com.google.android.libraries.places.api.model.Place.Field.NAME, com.google.android.libraries.places.api.model.Place.Field.LAT_LNG);
+                    Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(this);
+                    startActivityForResult(intent, PLACE_PICKER_DESTINATION_REQUEST);
                 }
-                catch (GooglePlayServicesRepairableException e)
-                {
-                    // TODO: Handle the error.
-                }
-                catch (GooglePlayServicesNotAvailableException e)
+                catch (Exception e)
                 {
                     // TODO: Handle the error.
                 }
@@ -246,7 +245,7 @@ public class RouteFinderActivity extends AppCompatActivity implements View.OnCli
                     tvSourceLatLng.setVisibility(View.VISIBLE);
                     tvSourceAddress.setVisibility(View.VISIBLE);
                     tvSourceName.setVisibility(View.VISIBLE);
-                    Place place = PlacePicker.getPlace(context, data);
+                    Place place = Autocomplete.getPlaceFromIntent(data);
                     sLatlng = place.getLatLng();
                     LatLng latLng = place.getLatLng();
                     tvSourceAddress.setText(place.getAddress());
@@ -271,7 +270,7 @@ public class RouteFinderActivity extends AppCompatActivity implements View.OnCli
                     tvDesLatLng.setVisibility(View.VISIBLE);
                     tvDesAddress.setVisibility(View.VISIBLE);
                     tvDesName.setVisibility(View.VISIBLE);
-                    Place place = PlacePicker.getPlace(context, data);
+                    Place place = Autocomplete.getPlaceFromIntent(data);
                     LatLng latLng = place.getLatLng();
                     dLatLng = place.getLatLng();
                     tvDesAddress.setText(place.getAddress());

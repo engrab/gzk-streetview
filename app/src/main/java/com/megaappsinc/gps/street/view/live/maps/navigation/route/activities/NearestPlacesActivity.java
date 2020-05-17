@@ -32,7 +32,6 @@ import java.util.List;
 public class NearestPlacesActivity extends AppCompatActivity {
     List<NearByModel> list;
     InterstitialAd mInterstitialAd;
-    boolean isFromBackPress = false;
     int mPosition = 0;
     AdView mAdView;
 
@@ -44,12 +43,9 @@ public class NearestPlacesActivity extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!isFromBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-                        isFromBackPress = true;
-                        mInterstitialAd.show();
-                    } else {
+
                         finish();
-                    }
+
                 }
             });
         } catch (Exception ignored) {
@@ -176,9 +172,7 @@ public class NearestPlacesActivity extends AppCompatActivity {
                     public void onAdClosed() {
                         try {
                             requestNewInterstitial();
-                            if (!isFromBackPress) {
-                                showNearBy();
-                            }
+
                         } catch (Exception ignored) {
                         }
                     }
@@ -237,12 +231,9 @@ public class NearestPlacesActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!isFromBackPress && mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            isFromBackPress = true;
-            mInterstitialAd.show();
-        } else {
+
             super.onBackPressed();
-        }
+
     }
 
     private void showNearBy() {
@@ -295,7 +286,6 @@ public class NearestPlacesActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         try {
                             mPosition = position;
-                            isFromBackPress = false;
                             if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
                                 mInterstitialAd.show();
                             } else {

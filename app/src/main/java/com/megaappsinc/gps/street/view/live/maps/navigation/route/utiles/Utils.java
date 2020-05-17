@@ -21,6 +21,8 @@ import java.util.Locale;
 
 public class Utils
 {
+    public static String INAPPproductId ="com.megaappsinc.gps.street.view.live.maps.navigation.route";
+
 
     public static boolean isLocationEnabled(Context context)
     {
