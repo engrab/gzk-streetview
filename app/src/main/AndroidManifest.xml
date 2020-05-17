@@ -83,7 +83,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.LiveAddressActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait" />

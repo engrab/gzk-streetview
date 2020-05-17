@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,6 +66,8 @@ public class LiveAddressActivity extends AppCompatActivity implements OnMapReady
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_live_address);
         knowAddressText = findViewById(R.id.knowAddressText);
         knowAddressText.setTypeface(null, Typeface.ITALIC);
@@ -133,7 +136,6 @@ public class LiveAddressActivity extends AppCompatActivity implements OnMapReady
 
 
             mAdView = findViewById(R.id.adView);
-            mAdView.setAdUnitId(getString(R.string.banner_home_footer));
             mAdView.loadAd(new AdRequest.Builder().build());
             mAdView.setAdListener(new AdListener(){
                 @Override

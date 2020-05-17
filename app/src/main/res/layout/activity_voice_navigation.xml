@@ -34,18 +34,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/appLovinAdView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_centerHorizontal="true"/>
 
     <RelativeLayout
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appLovinAdView"
+        android:layout_below="@+id/appBarLayout"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:background="@drawable/rounded">
@@ -73,12 +67,6 @@
 
     </RelativeLayout>
 
-    <androidx.appcompat.widget.RecyclerView
-        android:id="@+id/rvItems"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/ivRecorder"
-        android:layout_below="@+id/cv"/>
 
     <ImageView
         android:id="@+id/ivRecorder"

@@ -33,19 +33,13 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/appLovinAdView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_centerHorizontal="true"/>
 
     <GridView
         android:id="@+id/gridView1_masha"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/ll"
-        android:layout_below="@+id/appLovinAdView"
+        android:layout_below="@+id/appBarLayout"
         android:columnWidth="100.0dip"
         android:gravity="center"
         android:numColumns="auto_fit"

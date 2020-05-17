@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -35,8 +36,9 @@ public class VoiceNavigationActivity extends AppCompatActivity implements View.O
     int VOICE_REQUEST = 12;
     AdView mAdView;
     Activity context;
-    RecyclerView recyclerView;
+    TextView textView;
     private InterstitialAd mInterstitialAd;
+    List<String> list;
 
     private void SetupToolbar() {
         try {
@@ -71,6 +73,7 @@ public class VoiceNavigationActivity extends AppCompatActivity implements View.O
 
     private void Init() {
         context = VoiceNavigationActivity.this;
+        textView = findViewById(R.id.tvVoice);
         SetupToolbar();
         AppPurchasePref appPurchasePref = new AppPurchasePref(this);
         if (appPurchasePref.getItemDetail().equals("") && appPurchasePref.getProductId().equals("")) {
@@ -96,9 +99,19 @@ public class VoiceNavigationActivity extends AppCompatActivity implements View.O
                 }
             });
         }
-        recyclerView = findViewById(R.id.rvItems);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        findViewById(R.id.tvVoice).setOnClickListener(this);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (list != null && list.size() > 0) {
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + list.get(0)));
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    if (mapIntent.resolveActivity(context.getPackageManager()) != null) {
+                        context.startActivity(mapIntent);
+                    }
+                }
+            }
+        });
         findViewById(R.id.iv).setOnClickListener(this);
         findViewById(R.id.cv).setOnClickListener(this);
         findViewById(R.id.ivRecorder).setOnClickListener(this);
@@ -107,7 +120,6 @@ public class VoiceNavigationActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tvVoice:
             case R.id.iv:
             case R.id.cv:
                 try {
@@ -207,11 +219,10 @@ public class VoiceNavigationActivity extends AppCompatActivity implements View.O
         } else if (requestCode == VOICE_REQUEST) {
             if (resultCode == RESULT_OK && data != null) {
                 try {
-                    List<String> list = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                    list = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     if (list != null && list.size() > 0) {
-                        recyclerView.setAdapter(new VoiceNavigationAdapter(context, list));
-                    } else {
-                        recyclerView.setAdapter(null);
+                        textView.setText(list.get(0));
                     }
                 } catch (Exception ignored) {
                 }

@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -77,6 +78,7 @@ public class RoutActivity extends AppCompatActivity implements OnMapReadyCallbac
     GoogleMap map;
     ArrayList<LatLng> mMarkerPoints;
     TextView distance;
+     AdView mAdView;
     Runnable r = new Runnable()
     {
         @Override
@@ -110,8 +112,6 @@ public class RoutActivity extends AppCompatActivity implements OnMapReadyCallbac
     String addressFrom, addressTo, distanceInfo;
     boolean mapBusy = false;
     UiSettings mUiSettings;
-    private InterstitialAd mInterstitialAd;
-    private AdView mAdView;
     private String style = "";
 
     @Override
@@ -130,10 +130,6 @@ public class RoutActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             if (Utils.isNetworkAvailable(getApplicationContext())) {
                 BannerAdmob();
-                mInterstitialAd = new InterstitialAd(this);
-                mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
-                mInterstitialAd.loadAd(new AdRequest.Builder()
-                        .build());
 
 
             }
@@ -164,13 +160,14 @@ public class RoutActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
     private void BannerAdmob()
     {
-        final AdView adView = this.findViewById(R.id.adView);
-        adView.loadAd(new AdRequest.Builder().build());
-        adView.setAdListener(new AdListener(){
+
+        mAdView = this.findViewById(R.id.adView);
+        mAdView.loadAd(new AdRequest.Builder().build());
+        mAdView.setAdListener(new AdListener(){
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                adView.setVisibility(View.VISIBLE);
+                mAdView.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -178,18 +175,9 @@ public class RoutActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onBackPressed()
     {
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded())
-        {
-            mInterstitialAd.show();
-        }
-        else
-        {
-            if (mInterstitialAd != null)
-            {
-                mInterstitialAd.setAdListener(null);
-            }
+
             super.onBackPressed();
-        }
+
     }
 
     private String getDirectionsUrl(LatLng origin, LatLng dest)
@@ -463,6 +451,10 @@ public class RoutActivity extends AppCompatActivity implements OnMapReadyCallbac
                 dialog.dismiss();
             }
         });
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setGravity(Gravity.CENTER);
+        }
         dialog.show();
 
     }
@@ -498,29 +490,24 @@ public class RoutActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onPause()
     {
-        if (mInterstitialAd != null)
-        {
-            mInterstitialAd.setAdListener(null);
-        }
         if (mAdView != null)
         {
             mAdView.pause();
         }
-        handler.removeCallbacks(r);
+
         super.onPause();
     }
 
     @Override
     protected void onResume()
     {
+
+
+        super.onResume();
         if (mAdView != null)
         {
-            mAdView.setVisibility(View.VISIBLE);
-            mAdView.bringToFront();
             mAdView.resume();
         }
-        handler.postDelayed(r, 3000);
-        super.onResume();
     }
 
     @Override

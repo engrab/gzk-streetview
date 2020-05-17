@@ -23,7 +23,7 @@
         android:maxLines="1"
         android:text="Hospital"
         android:textAppearance="@style/TextAppearanceShadow"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold"/>
 

@@ -155,14 +155,9 @@ public class RouteFinderActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onBackPressed()
     {
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded())
-        {
-            mInterstitialAd.show();
-        }
-        else
-        {
+
             super.onBackPressed();
-        }
+
     }
 
     @Override
